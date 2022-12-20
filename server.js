@@ -68,17 +68,17 @@ server.get("/", (req, res) => {
 });
 
 server.get("/contact", (req, res) => {
-  res.send("this is the contact page");
+  res.render('contact.ejs');
 });
 
 server.get("/orders", (req, res) => {
-  res.send("this suppose to be a orders/cart page");
+  res.render();
 });
 
 ////////////////////
 //NEW
 server.get("/orders/new", (req, res) => {
-  res.send("this is the new orders page");
+  res.render('new.ejs')
 });
 
 ////////////////////
@@ -102,13 +102,13 @@ server.post("/orders", (req, res) => {
 ////////////////////
 //EDIT
 server.use("/orders/:id/edit", (req, res) => {
-  console.log("editting orders");
+  res.render('edit.ejs');
 });
 
 ////////////////////
 //SHOW
 server.get("/:id", (req, res) => {
-  res.send("this is the showing page");
+  res.render('show.ejs');
 });
 
 ////////////////////
