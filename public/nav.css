@@ -12,6 +12,10 @@
   margin: 0;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 nav {
   background-color: var(--lightgreen);
   display: flex;
