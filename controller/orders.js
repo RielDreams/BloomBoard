@@ -4,7 +4,7 @@ const ordersRouter = express.Router();
 ////////////////////
 //INDEX
 ordersRouter.get("/", (req, res) => {
-  res.render();
+  res.render('index.ejs');
 });
 
 ////////////////////

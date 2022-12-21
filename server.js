@@ -18,6 +18,7 @@ const meat = require("./models/meats");
 const cheese = require("./models/cheese");
 const addOns = require("./models/addOns");
 const { urlencoded } = require("express");
+const ordersRouter = require("./controller/orders");
 
 ////////////////////
 //CONFIG
@@ -59,21 +60,21 @@ server.get("/createa", (req, res) => {
 });
 
 ////////////////////
-//ROUTES/CONTROLLER
+//ROUTES
 ////////////////////
 
 ////////////////////
-//CONTROLLER
+//controller
 server.use('/orders', ordersController)
 
 ////////////////////
 //INDEX
 server.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("main.ejs");
 });
 
 server.get("/contact", (req, res) => {
-  res.render('contact.ejs');
+  res.render("contact.ejs");
 });
 
 
@@ -88,7 +89,6 @@ server.get("/contact", (req, res) => {
 ////////////////////
 //UPDATE
 
-
 ////////////////////
 //CREATE
 
@@ -100,7 +100,7 @@ server.get("/contact", (req, res) => {
 ////////////////////
 //SHOW
 server.get("/:id", (req, res) => {
-  res.render('show.ejs');
+  res.render("show.ejs");
 });
 
 ////////////////////
@@ -109,5 +109,9 @@ server.get("/:id", (req, res) => {
 server.listen(PORT, () => {
   console.log(`BloomBoards is now online at ${PORT}`);
 });
-db.on("error", (err)=> console.log("an error occured with mongodb " + err.message))
-db.on('connected', ()=> console.log(`connected to mongoDB on ${db.host}:${db.port}`))
+db.on("error", (err) =>
+  console.log("an error occured with mongodb " + err.message)
+);
+db.on("connected", () =>
+  console.log(`connected to mongoDB on ${db.host}:${db.port}`)
+);
