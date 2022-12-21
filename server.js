@@ -33,6 +33,7 @@ server.use(methodOverride("_method"));
 server.use(urlencoded({ extended: true }));
 mongoose.connect(DATABASE_URI);
 const db = mongoose.connection;
+const ordersController = require('./controller/orders')
 
 ////////////////////
 //SEED/CREATE
@@ -58,8 +59,12 @@ server.get("/createa", (req, res) => {
 });
 
 ////////////////////
-//ROUTES
+//ROUTES/CONTROLLER
 ////////////////////
+
+////////////////////
+//CONTROLLER
+server.use('/orders', ordersController)
 
 ////////////////////
 //INDEX
@@ -71,39 +76,26 @@ server.get("/contact", (req, res) => {
   res.render('contact.ejs');
 });
 
-server.get("/orders", (req, res) => {
-  res.render();
-});
 
 ////////////////////
 //NEW
-server.get("/orders/new", (req, res) => {
-  res.render('new.ejs')
-});
+
 
 ////////////////////
 //DESTORY
-server.delete("/orders/:id", (req, res) => {
-  console.log("this is the cancel order page");
-});
+
 
 ////////////////////
 //UPDATE
-server.put("orders/:id", (req, res) => {
-  res.send("this is the updated page");
-});
+
 
 ////////////////////
 //CREATE
-server.post("/orders", (req, res) => {
-  console.log("this is creating orders");
-});
+
 
 ////////////////////
 //EDIT
-server.use("/orders/:id/edit", (req, res) => {
-  res.render('edit.ejs');
-});
+
 
 ////////////////////
 //SHOW
@@ -117,3 +109,5 @@ server.get("/:id", (req, res) => {
 server.listen(PORT, () => {
   console.log(`BloomBoards is now online at ${PORT}`);
 });
+db.on("error", (err)=> console.log("an error occured with mongodb " + err.message))
+db.on('connected', ()=> console.log(`connected to mongoDB on ${db.host}:${db.port}`))
