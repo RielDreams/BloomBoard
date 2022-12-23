@@ -17,10 +17,12 @@ ordersRouter.use(express.static("./public"));
 ////////////////////
 //INDEX
 ordersRouter.get("/", (req, res) => {
+  Orders.find({}, (err, foundOrder)=> {
   res.render("orders/index.ejs", {
     currentUser: req.session.currentUser
   });
 });
+})
 
 ////////////////////
 //NEW
@@ -55,7 +57,7 @@ ordersRouter.put("/:id", (req, res) => {
 ////////////////////
 //CREATE
 ordersRouter.post("/", (req, res) => {
-  Orders.create(req.body, (err, createdOrder) => {
+  Orders.create(req.body, (err, createdOrders) => {
     res.redirect('/orders')
   })
 });

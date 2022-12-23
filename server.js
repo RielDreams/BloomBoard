@@ -55,7 +55,7 @@ server.use('/menu', menuController)
 ////////////////////
 //INDEX
 server.get("/", (req, res) => {
-  res.render("main.ejs", {
+  res.render("index.ejs", {
     currentUser: req.session.currentUser
 });
 });
