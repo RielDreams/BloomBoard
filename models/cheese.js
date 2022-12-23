@@ -5,4 +5,11 @@ const cheeseSchema = new Schema({
     name: String
 })
 
-module.exports = mongoose.model("Cheese", cheeseSchema)
+const meatSchema = new Schema({
+    name: String,
+})
+
+Meat = mongoose.model('Meat', meatSchema)
+Cheese = mongoose.model("Cheese", cheeseSchema)
+
+module.exports = {Meat, Cheese}

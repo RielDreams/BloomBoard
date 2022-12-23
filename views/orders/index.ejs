@@ -4,19 +4,27 @@
     <%- include('../partials/header')%>
   </head>
   <body>
-    <nav>
-      <%- include('../partials/nav') %>
-    </nav>
+    <nav><%- include('../partials/nav') %></nav>
     <main id="container">
       <ul>
-      <% foundOrder.forEach(order => { %> 
+        <form action="">
+        <% foundOrder.forEach(order => { %>
         <li>
-          <div>
-            
-          </div>
+          <% order.cheese.forEach(cheese=> { %>
+          <div><%=cheese.name%></div>
+          <%})%> <% order.meats.forEach(meat => { %>
+          <div><%=meat.name%></div>
+          <%})%>
+          <% order.addons.forEach(addon => { %>
+            <div><%=addon.name%></div> <%})%>
         </li>
+        <input type="submit" value="Delete" id="button">
+        <a href="https://google.com"><input type="button" value="Edit" id="button"></a>
         <%})%>
+      </form>
       </ul>
     </main>
   </body>
 </html>
+
+<!-- TODO: turn order in table view -->

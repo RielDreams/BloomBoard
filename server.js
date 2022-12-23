@@ -15,16 +15,17 @@ const server = express();
 ////////////////////
 //DATA
 ////////////////////
-const Meats = require("./models/meats");
-const Cheese = require("./models/cheese");
+// const Meats = require("./models/meat");
+const {Meats, Cheese} = require("./models/cheese");
 const AddOns = require("./models/addOns");
-const Orders = require("./models/order");
-const Sizes = require("./models/sizes");
+// const Orders = require("./models/order");
+const Sizes = require("./models/size");
 const { urlencoded } = require("express");
 const accountController = require('./controller/account')
 const userController = require('./controller/users')
 const ordersController = require("./controller/orders");
 const menuController = require('./controller/menu');
+// TODO: remove commented out sections 
 
 ////////////////////
 //CONFIG

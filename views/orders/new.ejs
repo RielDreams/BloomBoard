@@ -14,7 +14,7 @@
           <label for="size">Size:</label>
           <select name="size" id="size">
             <% size.forEach(s => { %> 
-              <option value="<%=s.price%>"><%=s.size%></option>
+              <option value="<%=s._id%>"><%=s.size%> <%=s.price%></option>
               <% })%>
           </select>
         </div>
@@ -49,7 +49,7 @@
         <select name="addOns" id="addons">
           <option value="null" selected>pick add on</option>
           <% addOns.forEach(a => { %>
-          <option value="<%=a.price%>"><%=a.name%> + <%=a.price%></option>
+          <option value="<%=a._id%>"><%=a.name%> + <%=a.price%></option>
           <% })%>
         </select>
        </div>
