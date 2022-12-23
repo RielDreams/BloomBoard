@@ -4,6 +4,11 @@ const accountRouter = express.Router();
 const User = require("../models/user");
 
 ////////////////////
+//MIDWARE
+////////////////////
+accountRouter.use(express.static("./public"));
+
+////////////////////
 //LOGIN
 ////////////////////
 accountRouter.get("/login", (req, res) => {

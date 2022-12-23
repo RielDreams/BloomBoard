@@ -15,13 +15,11 @@ const server = express();
 ////////////////////
 //DATA
 ////////////////////
-const Meats = require("./models/meats");
-const Cheese = require("./models/cheese");
-const AddOns = require("./models/addOns");
 const { urlencoded } = require("express");
 const accountController = require('./controller/account')
 const userController = require('./controller/users')
 const ordersController = require("./controller/orders");
+const menuController = require('./controller/menu')
 
 ////////////////////
 //CONFIG
@@ -52,6 +50,7 @@ const db = mongoose.connection;
 server.use("/orders", ordersController);
 server.use('/account', accountController)
 server.use('/user', userController)
+server.use('/menu', menuController)
 
 ////////////////////
 //INDEX
@@ -104,9 +103,7 @@ server.get("/createm", (req, res) => {
 
 ////////////////////
 //SHOW
-server.get("/:id", (req, res) => {
-  res.render("show.ejs");
-});
+
 
 ////////////////////
 //LISTENING

@@ -3,6 +3,10 @@ const express = require('express')
 const userRouter = express.Router()
 const User = require('../models/user')
 
+////////////////////
+//MIDWARE
+////////////////////
+userRouter.use(express.static("./public"));
 
 ////////////////////
 //NEW USER

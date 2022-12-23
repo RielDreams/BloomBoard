@@ -9,37 +9,38 @@
     </nav>
     <div id="container">
       <h1>make your own board</h1>
-      <form action="/orders">
-      <label for="Cheese">Choose 2 cheeses</label>
-      <select name="cheese" id="cheese">
-        <% cheese.forEach(c =>{ %>
-        <option id="<%=c._id%>"><%=c.name%></option>
-        <% }) %>
-      </select>
-      <select name="cheese" id="cheese">
-        <% cheese.forEach(c =>{ %>
-        <option id="<%=c._id%>"><%=c.name%></option>
-        <% }) %>
-      </select>
-      <label for="meats">Choose 2 meats </label>
-      <select name="meats" id="meats">
-        <% meats.forEach(m => { %>
-        <option id="<%= m._id%>"><%=m.name%></option>
-        <% }) %>
-      </select>
-      <select name="meats" id="meats">
-        <% meats.forEach(m => { %>
-        <option id="<%=m._id%>"><%=m.name%></option>
-        <% })%>
-      </select>
-      <label for="addons">Optional Add Ons</label>
-      <select name="addOns" id="addons">
-        <% addOns.forEach(a => { %>
-        <option id="<%=a._id%>"><%=a.name%> +<%=a.price%></option>
-        <% })%>
-      </select>
-      <input type="submit" name="Create Order" id="button">
-    </form>
+      <form action="/orders" method="POST">
+        <label for="Cheese">Choose 2 cheeses</label>
+        <select name="cheese" id="cheese">
+          <% cheese.forEach(c =>{ %>
+          <option id="<%=c._id%>"><%=c.name%></option>
+          <% }) %>
+        </select>
+        <select name="cheese" id="cheese">
+          <% cheese.forEach(c =>{ %>
+          <option id="<%=c._id%>"><%=c.name%></option>
+          <% }) %>
+        </select>
+        <label for="meats">Choose 2 meats </label>
+        <select name="meats" id="meats">
+          <% meats.forEach(m => { %>
+          <option id="<%= m._id%>"><%=m.name%></option>
+          <% }) %>
+        </select>
+        <select name="meats" id="meats">
+          <% meats.forEach(m => { %>
+          <option id="<%=m._id%>"><%=m.name%></option>
+          <% })%>
+        </select>
+        <label for="addons">Optional Add Ons</label>
+        <select name="addOns" id="addons">
+          <option id="null" selected>pick add on</option>
+          <% addOns.forEach(a => { %>
+          <option id="<%=a._id%>"><%=a.name%> + <%=a.price%></option>
+          <% })%>
+        </select>
+        <input type="submit" value="Create Order" id="button" />
+      </form>
     </div>
   </body>
 </html>

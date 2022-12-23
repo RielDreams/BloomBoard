@@ -10,9 +10,16 @@ const AddOns = require("../models/addOns");
 const Orders = require('../models/order')
 
 ////////////////////
+//MIDWARE
+////////////////////
+ordersRouter.use(express.static("./public"));
+
+////////////////////
 //INDEX
 ordersRouter.get("/", (req, res) => {
-  res.render("orders/index.ejs");
+  res.render("orders/index.ejs", {
+    currentUser: req.session.currentUser
+  });
 });
 
 ////////////////////
@@ -32,31 +39,41 @@ ordersRouter.get("/new", async (req, res) => {
 ////////////////////
 //DESTORY
 ordersRouter.delete("/:id", (req, res) => {
-  console.log("this is the cancel order page");
+  Orders.findByIdAndRemove(req.params.id, ()=> {
+    res.redirect('/orders')
+  })
 });
 
 ////////////////////
 //UPDATE
 ordersRouter.put("/:id", (req, res) => {
-  res.send("this is the updated page");
+  Orders.findByIdAndUpdate(req.params.id, ()=>{
+    res.redirect('/orders')
+  })
 });
 
 ////////////////////
 //CREATE
 ordersRouter.post("/", (req, res) => {
-  console.log("this is creating orders");
+  Orders.create(req.body, (err, createdOrder) => {
+    res.redirect('/orders')
+  })
 });
 
 ////////////////////
 //EDIT
 ordersRouter.use("/:id/edit", (req, res) => {
-  res.render("orders/edit.ejs");
+  Orders.findById(req.params.id, (err, foundOrder) => {
+    res.render('orders/edit.ejs', {foundOrder})
+  })
 });
 
 ////////////////////
 //SHOW
 ordersRouter.get("/:id", (req, res) => {
-  res.render("orders/show.ejs");
+  Orders.findById(req.params.id, (err, foundOrder) => {
+    res.render('orders/show.ejs', {foundOrder})
+  })
 });
 
 module.exports = ordersRouter;

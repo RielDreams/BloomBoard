@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const addOnsSchema = new Schema({
     name: String,
-    price: Number,
+    price: {type: Number, default: '6'}
 })
 
 module.exports = mongoose.model("addOns", addOnsSchema)
