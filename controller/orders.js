@@ -2,15 +2,31 @@ const express = require("express");
 const ordersRouter = express.Router();
 
 ////////////////////
+//DATA  
+////////////////////
+const Meats = require("../models/meats");
+const Cheese = require("../models/cheese");
+const AddOns = require("../models/addOns");
+const Orders = require('../models/order')
+
+////////////////////
 //INDEX
 ordersRouter.get("/", (req, res) => {
-  res.render('index.ejs');
+  res.render("orders/index.ejs");
 });
 
 ////////////////////
 //NEW
-ordersRouter.get("/new", (req, res) => {
-  res.render("new.ejs");
+ordersRouter.get("/new", async (req, res) => {
+  const cheese = await Cheese.find({})
+  const meats = await Meats.find({})
+  const addOns = await AddOns.find({})
+  res.render('orders/new.ejs', {
+    cheese,
+    meats,
+    addOns,
+    currentUser: req.session.currentUser
+  })
 });
 
 ////////////////////
@@ -34,14 +50,13 @@ ordersRouter.post("/", (req, res) => {
 ////////////////////
 //EDIT
 ordersRouter.use("/:id/edit", (req, res) => {
-  res.render("edit.ejs");
+  res.render("orders/edit.ejs");
 });
 
 ////////////////////
 //SHOW
 ordersRouter.get("/:id", (req, res) => {
-    res.render('show.ejs');
-  });
+  res.render("orders/show.ejs");
+});
 
-
-  module.exports = ordersRouter
+module.exports = ordersRouter;

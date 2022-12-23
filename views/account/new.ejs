@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/header')%>
+  </head>
+  <body>
+    <nav>
+      <%- include('../partials/nav') %>
+    </nav>
+    <div id="login">
+      <h1>login</h1>
+      <form action="/account" method="POST">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="Email" />
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" />
+        <input type="submit" value="Login" />
+      </form>
+      <a href="/user/new">Create New Account</a>
+    </div>
+  </body>
+</html>

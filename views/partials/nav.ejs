@@ -9,5 +9,11 @@
   <a href="/">Home</a> | <a href="/menu">Menu</a> |
   <a href="/orders/new">Create order</a> | <a href="/orders">orders</a> |
   <a href="/contact">Contact</a> |
-  <a href="/user">User</a>
+  <% if(currentUser) { %>
+		<form action="/account?_method=DELETE" method="POST">
+			<input type="submit" value="Log Out" />
+		</form>
+	<% } else { %>
+    <a href="/account/login">Login</a>
+	<% } %>
 </div>

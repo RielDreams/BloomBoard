@@ -1,10 +1,11 @@
 ////////////////////
 //PACKAGES
 ////////////////////
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
-require("dotenv").config();
+const session = require('express-session')
 
 ////////////////////
 //intializing
@@ -14,11 +15,13 @@ const server = express();
 ////////////////////
 //DATA
 ////////////////////
-const meat = require("./models/meats");
-const cheese = require("./models/cheese");
-const addOns = require("./models/addOns");
+const Meats = require("./models/meats");
+const Cheese = require("./models/cheese");
+const AddOns = require("./models/addOns");
 const { urlencoded } = require("express");
-const ordersRouter = require("./controller/orders");
+const accountController = require('./controller/account')
+const userController = require('./controller/users')
+const ordersController = require("./controller/orders");
 
 ////////////////////
 //CONFIG
@@ -32,32 +35,13 @@ const DATABASE_URI = process.env.DATABASE_URI;
 server.use(express.static("./public"));
 server.use(methodOverride("_method"));
 server.use(urlencoded({ extended: true }));
+server.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+}))
 mongoose.connect(DATABASE_URI);
 const db = mongoose.connection;
-const ordersController = require('./controller/orders')
-
-////////////////////
-//SEED/CREATE
-////////////////////
-server.get("/createm", (req, res) => {
-  meat.create(req.body, (err) => {
-    console.log(meat);
-  });
-});
-
-server.get("/createc", (req, res) => {
-  cheese.create(req.body, (err, c) => {
-    res.send(c);
-  });
-});
-
-server.get("/createa", (req, res) => {
-  addOns.create(req.body, (err) => {
-    addOns.find({}, (err, find) => {
-      res.send(find);
-    });
-  });
-});
 
 ////////////////////
 //ROUTES
@@ -65,37 +49,58 @@ server.get("/createa", (req, res) => {
 
 ////////////////////
 //controller
-server.use('/orders', ordersController)
+server.use("/orders", ordersController);
+server.use('/account', accountController)
+server.use('/user', userController)
 
 ////////////////////
 //INDEX
 server.get("/", (req, res) => {
-  res.render("main.ejs");
+  res.render("main.ejs", {
+    currentUser: req.session.currentUser
+});
 });
 
 server.get("/contact", (req, res) => {
-  res.render("contact.ejs");
+  res.render("contact.ejs",{
+    currentUser: req.session.currentUser
 });
-
+});
 
 ////////////////////
 //NEW
 
-
 ////////////////////
 //DESTORY
-
 
 ////////////////////
 //UPDATE
 
 ////////////////////
-//CREATE
-
+//SEED/CREATE
+////////////////////
+server.get("/createm", (req, res) => {
+    meat.create(req.body, (err) => {
+      console.log(meat);
+    });
+  });
+  
+  server.get("/createc", (req, res) => {
+    cheese.create(req.body, (err, c) => {
+      res.send(c);
+    });
+  });
+  
+  server.get("/createa", (req, res) => {
+    addOns.create(req.body, (err) => {
+      addOns.find({}, (err, find) => {
+        res.send(find);
+      });
+    });
+  });
 
 ////////////////////
 //EDIT
-
 
 ////////////////////
 //SHOW
