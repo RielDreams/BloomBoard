@@ -5,4 +5,4 @@ const cheeseSchema = new Schema({
     name: String
 })
 
-module.exports = mongoose.model("cheese", cheeseSchema)
+module.exports = mongoose.model("Cheese", cheeseSchema)

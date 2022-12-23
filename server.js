@@ -15,11 +15,16 @@ const server = express();
 ////////////////////
 //DATA
 ////////////////////
+const Meats = require("./models/meats");
+const Cheese = require("./models/cheese");
+const AddOns = require("./models/addOns");
+const Orders = require("./models/order");
+const Sizes = require("./models/sizes");
 const { urlencoded } = require("express");
 const accountController = require('./controller/account')
 const userController = require('./controller/users')
 const ordersController = require("./controller/orders");
-const menuController = require('./controller/menu')
+const menuController = require('./controller/menu');
 
 ////////////////////
 //CONFIG
@@ -79,24 +84,29 @@ server.get("/contact", (req, res) => {
 //SEED/CREATE
 ////////////////////
 server.get("/createm", (req, res) => {
-    meat.create(req.body, (err) => {
-      console.log(meat);
+    Meats.create(req.body, (err) => {
     });
   });
   
   server.get("/createc", (req, res) => {
-    cheese.create(req.body, (err, c) => {
+    Cheese.create(req.body, (err, c) => {
       res.send(c);
     });
   });
   
   server.get("/createa", (req, res) => {
-    addOns.create(req.body, (err) => {
-      addOns.find({}, (err, find) => {
+    AddOns.create(req.body, (err) => {
+      AddOns.find({}, (err, find) => {
         res.send(find);
       });
     });
   });
+
+  server.get('/creates', (req,res)=> {
+    Sizes.create(req.body, (err, size)=> {
+        res.send(size)
+    })
+  })
 
 ////////////////////
 //EDIT

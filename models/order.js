@@ -3,11 +3,12 @@ const Schema = mongoose.Schema;
 
 const orderSchema = new Schema(
   {
-    cheese: [{ type: Schema.Types.ObjectId, ref: "Cheese", required: true }],
-    meats: [{ type: Schema.Types.ObjectId, ref: "Meats", required: true }],
-    addons: [{ type: Schema.Types.ObjectId, ref: "Addons" }],
+    size: [{ type: Schema.Types.ObjectId, ref: 'Sizes' }],
+    cheese: [{ type: Schema.Types.ObjectId, ref: "Cheese" }],
+    meats: [{ type: Schema.Types.ObjectId, ref: "Meats" }],
+    addons: [{ type: Schema.Types.ObjectId, ref: "AddOns" }],
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("order", orderSchema);
+module.exports = mongoose.model("Orders", orderSchema);

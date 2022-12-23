@@ -10,36 +10,52 @@
     <main id="container">
       <h2>make your own board</h1>
       <form action="/orders" method="POST">
-        <label for="Cheese">Choose 2 cheeses</label>
+        <div class="size">
+          <label for="size">Size:</label>
+          <select name="size" id="size">
+            <% size.forEach(s => { %> 
+              <option value="<%=s.price%>"><%=s.size%></option>
+              <% })%>
+          </select>
+        </div>
+        <div class="cheese">
+          <label for="Cheese">Choose 2 cheeses</label>
         <select name="cheese" id="cheese">
           <% cheese.forEach(c =>{ %>
-          <option id="<%=c._id%>"><%=c.name%></option>
+          <option value="<%=c._id%>"><%=c.name%></option>
           <% }) %>
         </select>
         <select name="cheese" id="cheese">
           <% cheese.forEach(c =>{ %>
-          <option id="<%=c._id%>"><%=c.name%></option>
+          <option value="<%=c._id%>"><%=c.name%></option>
           <% }) %>
         </select>
-        <label for="meats">Choose 2 meats </label>
-        <select name="meats" id="meats">
-          <% meats.forEach(m => { %>
-          <option id="<%= m._id%>"><%=m.name%></option>
-          <% }) %>
-        </select>
-        <select name="meats" id="meats">
-          <% meats.forEach(m => { %>
-          <option id="<%=m._id%>"><%=m.name%></option>
-          <% })%>
-        </select>
+        </div>
+        <div class="meats">
+          <label for="meats">Choose 2 meats </label>
+          <select name="meats" id="meats">
+            <% meats.forEach(m => { %>
+            <option value="<%= m._id%>"><%=m.name%></option>
+            <% }) %>
+          </select>
+          <select name="meats" id="meats">
+            <% meats.forEach(m => { %>
+            <option value="<%=m._id%>"><%=m.name%></option>
+            <% })%>
+          </select>
+        </div>
+       <div class="addons">
         <label for="addons">Optional Add Ons</label>
         <select name="addOns" id="addons">
-          <option id="null" selected>pick add on</option>
+          <option value="null" selected>pick add on</option>
           <% addOns.forEach(a => { %>
-          <option id="<%=a._id%>"><%=a.name%> + <%=a.price%></option>
+          <option value="<%=a.price%>"><%=a.name%> + <%=a.price%></option>
           <% })%>
         </select>
+       </div>
         <input type="submit" value="Create Order" id="button" />
+        <h4>Total:</h4>
+        <!-- TODO: be able to sum up total -->
       </form>
     </main>
   </body>

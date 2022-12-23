@@ -6,4 +6,4 @@ const addOnsSchema = new Schema({
     price: {type: Number, default: '6'}
 })
 
-module.exports = mongoose.model("addOns", addOnsSchema)
+module.exports = mongoose.model("AddOns", addOnsSchema)
