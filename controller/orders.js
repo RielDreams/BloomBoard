@@ -6,9 +6,10 @@ const ordersRouter = express.Router();
 ////////////////////
 const Orders = require("../models/order");
 // const Meats = require("../models/meat");
-const { Meat, Cheese } = require("../models/cheese");
-const AddOns = require("../models/addOns");
-const Size = require("../models/size");
+const {Meat, Cheese, AddOns} = require("../models/menuitem");
+// const AddOns = require("../models/addOns");
+const Sizes = require("../models/size");
+// TODO: remove commented out stuff 
 
 ////////////////////
 //MIDWARE
@@ -24,7 +25,7 @@ ordersRouter.get("/", async (req, res) => {
     .populate("size")
     .populate("addons")
     .exec((err, foundOrder) => {
-      console.log(foundOrder);
+      console.log(err)
       res.render("orders/index.ejs", {
         currentUser: req.session.currentUser,
         foundOrder,
@@ -38,7 +39,7 @@ ordersRouter.get("/new", async (req, res) => {
   const cheese = await Cheese.find({});
   const meats = await Meat.find({});
   const addOns = await AddOns.find({});
-  const size = await Size.find({});
+  const size = await Sizes.find({});
   res.render("orders/new.ejs", {
     cheese,
     meats,
@@ -59,7 +60,7 @@ ordersRouter.delete("/:id", (req, res) => {
 ////////////////////
 //UPDATE
 ordersRouter.put("/:id", (req, res) => {
-  Orders.findByIdAndUpdate(req.params.id, () => {
+  Orders.findByIdAndUpdate(req.params.id, req.body, () => {
     res.redirect("/orders");
   });
 });
@@ -75,19 +76,43 @@ ordersRouter.post("/", (req, res) => {
 
 ////////////////////
 //EDIT
-ordersRouter.use("/:id/edit", (req, res) => {
-  Orders.findById(req.params.id, (err, foundOrder) => {
-    res.render("orders/edit.ejs", { foundOrder });
-  });
+ordersRouter.get("/:id/edit", async (req, res) => {
+  const cheese = await Cheese.find({});
+  const addOns = await AddOns.find({});
+  const size = await Sizes.find({});
+  const meats = await Meat.find({});
+  Orders.findById(req.params.id)
+    .populate("meats")
+    .populate("cheese")
+    .populate("size")
+    .populate("addons")
+    .exec((err, foundOrder) => {
+      console.log(foundOrder.cheese);
+      res.render("orders/edit.ejs", {
+        cheese,
+        meats,
+        addOns,
+        size,
+        foundOrder,
+        currentUser: req.session.currentUser,
+      });
+    });
 });
 
 ////////////////////
 //SHOW
 ordersRouter.get("/:id", (req, res) => {
-  Orders.findById(req.params.id, (err, foundOrder) => {
-    res.render("orders/show.ejs", { foundOrder });
-    console.log(foundOrder);
-  });
+  Orders.findById(req.params.id)
+    .populate("meats")
+    .populate("cheese")
+    .populate("size")
+    .populate("addons")
+    .exec((err, foundOrder) => {
+      res.render("orders/show.ejs", {
+        foundOrder,
+        currentUser: req.session.currentUser,
+      });
+    });
 });
 
 module.exports = ordersRouter;

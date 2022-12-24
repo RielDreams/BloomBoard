@@ -1,9 +1,11 @@
+body {
+
+}
+
 #container {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  width: 20rem;
+  width: 22rem;
   text-align: center;
 }
 
@@ -14,4 +16,14 @@
 h2 {
   width: 20rem;
   text-align: center;
+}
+
+ul {
+  width: max-content;
+  display: block;
+  
+}
+li {
+  width: auto;
+  text-decoration: none;
 }

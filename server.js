@@ -16,8 +16,8 @@ const server = express();
 //DATA
 ////////////////////
 // const Meats = require("./models/meat");
-const {Meats, Cheese} = require("./models/cheese");
-const AddOns = require("./models/addOns");
+const {Meats, Cheese, AddOns,} = require("./models/menuitem");
+// const AddOns = require("./models/addOns");
 // const Orders = require("./models/order");
 const Sizes = require("./models/size");
 const { urlencoded } = require("express");

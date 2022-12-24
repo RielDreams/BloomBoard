@@ -7,3 +7,4 @@ const sizeSchema = new Schema({
 });
 
 module.exports = mongoose.model("Size", sizeSchema);
+// TODO: remove this model if useless

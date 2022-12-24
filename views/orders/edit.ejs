@@ -4,11 +4,55 @@
     <%- include('../partials/header')%>
   </head>
   <body>
-    <nav>
-      <%- include('../partials/nav') %>
-    </nav>
+      <nav><%- include('../partials/nav') %></nav>
     <main id="container">
-      
+      <h2>Edit Your Order</h1>
+      <form action="/orders/<%=foundOrder._id%>?_method=put" method="POST">
+        <div class="size">
+          <label for="size">Size:</label>
+          <select name="size" id="size">
+            <% size.forEach(s => { %> 
+              <option value="<%=s._id%>"><%=s.size%> <%=s.price%></option>
+              <% })%>
+          </select>
+        </div>
+        <div class="cheese">
+          <label for="Cheese">Choose 2 cheeses</label>
+        <select name="cheese" id="cheese">
+          <% cheese.forEach(c =>{ %>
+          <option value="<%=c._id%>"><%=c.name%></option>
+          <% }) %>
+        </select>
+        <select name="cheese" id="cheese">
+          <% cheese.forEach(c =>{ %>
+          <option value="<%=c._id%>"><%=c.name%></option>
+          <% }) %>
+        </select>
+        </div>
+        <div class="meats">
+          <label for="meats">Choose 2 meats </label>
+          <select name="meats" id="meats">
+            <% meats.forEach(m => { %>
+            <option value="<%= m._id%>"><%=m.name%></option>
+            <% }) %>
+          </select>
+          <select name="meats" id="meats">
+            <% meats.forEach(m => { %>
+            <option value="<%=m._id%>"><%=m.name%></option>
+            <% })%>
+          </select>
+        </div>
+       <div class="addons">
+        <label for="addons">Optional Add Ons</label>
+        <select name="addOns" id="addons">
+          <option value="null" selected>pick add on</option>
+          <% addOns.forEach(a => { %>
+          <option value="<%=a._id%>"><%=a.name%> + <%=a.price%></option>
+          <% })%>
+        </select>
+       </div>
+       <input type="submit" value="Edit Order" id="button" />
+      </form>
     </main>
   </body>
 </html>
