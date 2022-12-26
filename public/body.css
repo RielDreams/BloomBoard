@@ -1,29 +1,76 @@
+:root {
+  --darkgreen: #738b84;
+  --green: #91ac9d;
+  --lightgreen: #99b7a5;
+  --brown: #855b24;
+  --black: #000000;
+  --white: #ffffff;
+}
+
 body {
-
 }
 
-#container {
+main {
   display: flex;
-  flex-wrap: wrap;
-  width: 22rem;
-  text-align: center;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
 }
 
-#inner {
-  justify-content: center;
-  width: auto;
-}
-h2 {
-  width: 20rem;
+h3 {
+  width: 100rem;
+  height: fit-content;
   text-align: center;
 }
 
 ul {
-  width: max-content;
-  display: block;
-  
+  list-style-type: none;
+  align-self: flex-start;
 }
 li {
   width: auto;
   text-decoration: none;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: auto;
+  height: fit-content;
+  text-align: center;
+}
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  margin: 1rem;
+  width: 100rem;
+   box-shadow: 0px 0px 3px var(--green);
+  text-align: center;
+}
+
+.item:hover {
+  border: 1px solid var(--darkgreen);
+  zoom: 1.05;
+}
+
+
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 25rem;
+  max-height: 15rem; 
+}
+
+#contact {
+  max-width: 40rem;
+}
+
+#create {
+  max-width: 30rem;
 }

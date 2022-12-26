@@ -7,7 +7,8 @@
       <nav> <%- include('../partials/nav') %>
       </nav>
     <main id="container">
-      <h2>make your own board</h1>
+      <section class="item" id="create">
+      <h3>make your own board</h3>
       <form action="/orders" method="POST">
         <div class="size">
           <label for="size">Size:</label>
@@ -52,10 +53,12 @@
           <% })%>
         </select>
        </div>
+       <textarea name="" id="" cols="50" rows="10" placeholder="Special Request"></textarea>
         <input type="submit" value="Create Order" id="button" />
         <h4>Total:</h4>
         <!-- TODO: be able to sum up total -->
       </form>
+    </section>
     </main>
   </body>
 </html>
