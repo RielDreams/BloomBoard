@@ -5,18 +5,20 @@
   </head>
   <body>
     <nav><%- include('../partials/nav') %></nav>
-    <main id="container">
-      <div id="item">
-      <h2>login</h2>
-      <form action="/account" method="POST">
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="Email" />
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" />
-        <input type="submit" value="Login" />
-      </form>
-      <a href="/user/new">Create New Account</a>
-    </div>
+    <main class="container" id="user">
+      <div class="item" id="login">
+        <h2>login</h2>
+        <form action="/account" method="POST">
+          <label for="email"
+            >Email:<input type="email" name="email" id="Email"
+          /></label>
+          <label for="password"
+            >Password:<input type="password" name="password" id="password"
+          /></label>
+          <input type="submit" value="Login" />
+        </form>
+        <a href="/user/new">Create New Account</a>
+      </div>
     </main>
   </body>
 </html>

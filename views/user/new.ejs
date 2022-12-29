@@ -5,16 +5,22 @@
   </head>
   <body>
     <nav><%- include('../partials/nav') %></nav>
-    </nav>
-        <h2>Create New Account</h2>
-        <form action="/user" method="POST">
-          <label for="email">Email:</label>
-          <input type="email" name="email" id="Email" />
-          <label for="password">Password:</label>
-          <input type="password" name="password" id="password" />
-          <input type="submit" value="Create Account">
-        </form>
-        <a href="/account/login">Already Have Account?</a>
-    </div>
+    <main>
+      <section class="container" id="user">
+        <div class="item" id="login">
+          <h2>Create New Account</h2>
+          <form action="/user" method="POST">
+            <label for="email"
+              >Email:<input type="email" name="email" id="Email"
+            /></label>
+            <label for="password"
+              >Password:<input type="password" name="password" id="password"
+            /></label>
+            <input type="submit" value="Create Account" />
+          </form>
+          <a href="/account/login">Already Have Account?</a>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
