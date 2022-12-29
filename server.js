@@ -134,3 +134,7 @@ db.on("error", (err) =>
 db.on("connected", () =>
   console.log(`connected to mongoDB on ${db.host}:${db.port}`)
 );
+
+
+
+// TODO: refer back to dustin post on partytime to set limters
