@@ -5,7 +5,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
-const session = require('express-session')
+const session = require("express-session");
 
 ////////////////////
 //intializing
@@ -16,23 +16,23 @@ const server = express();
 //DATA
 ////////////////////
 // const Meats = require("./models/meat");
-const {Meats, Cheese, AddOns,} = require("./models/menuitem");
+const { Meats, Cheese, AddOns } = require("./models/menuitem");
 // const AddOns = require("./models/addOns");
 // const Orders = require("./models/order");
-const Menu = require('./models/menu')
+const Menu = require("./models/menu");
 const Sizes = require("./models/size");
 const { urlencoded } = require("express");
-const accountController = require('./controller/account')
-const userController = require('./controller/users')
+const accountController = require("./controller/account");
+const userController = require("./controller/users");
 const ordersController = require("./controller/orders");
-const menuController = require('./controller/menu');
-// TODO: remove commented out sections 
+const menuController = require("./controller/menu");
+// TODO: remove commented out sections
 
 ////////////////////
 //CONFIG
 ////////////////////
 const PORT = process.env.PORT;
-const DATABASE_URI = process.env.DATABASE_URI;
+const mongoURI = process.env.MONGODB_URI;
 
 ////////////////////
 //MIDWARE
@@ -40,12 +40,14 @@ const DATABASE_URI = process.env.DATABASE_URI;
 server.use(express.static("./public"));
 server.use(methodOverride("_method"));
 server.use(urlencoded({ extended: true }));
-server.use(session({
+server.use(
+  session({
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
-}))
-mongoose.connect(DATABASE_URI);
+  })
+);
+mongoose.connect(mongoURI);
 const db = mongoose.connection;
 
 ////////////////////
@@ -55,22 +57,22 @@ const db = mongoose.connection;
 ////////////////////
 //controller
 server.use("/orders", ordersController);
-server.use('/account', accountController)
-server.use('/user', userController)
-server.use('/menu', menuController)
+server.use("/account", accountController);
+server.use("/user", userController);
+server.use("/menu", menuController);
 
 ////////////////////
 //INDEX
 server.get("/", (req, res) => {
   res.render("index.ejs", {
-    currentUser: req.session.currentUser
-});
+    currentUser: req.session.currentUser,
+  });
 });
 
 server.get("/contact", (req, res) => {
-  res.render("contact.ejs",{
-    currentUser: req.session.currentUser
-});
+  res.render("contact.ejs", {
+    currentUser: req.session.currentUser,
+  });
 });
 
 ////////////////////
@@ -86,41 +88,39 @@ server.get("/contact", (req, res) => {
 //SEED/CREATE
 ////////////////////
 server.get("/createm", (req, res) => {
-    Meats.create(req.body, (err) => {
-    });
-  });
-  
-  server.get("/createc", (req, res) => {
-    Cheese.create(req.body, (err, c) => {
-      res.send(c);
-    });
-  });
-  
-  server.get("/createa", (req, res) => {
-    AddOns.create(req.body, (err) => {
-      AddOns.find({}, (err, find) => {
-        res.send(find);
-      });
-    });
-  });
+  Meats.create(req.body, (err) => {});
+});
 
-  server.get('/creates', (req,res)=> {
-    Sizes.create(req.body, (err, size)=> {
-        res.send(size)
-    })
-  })
+server.get("/createc", (req, res) => {
+  Cheese.create(req.body, (err, c) => {
+    res.send(c);
+  });
+});
 
-  server.get('/createmenu', (req,res)=> {
-    Menu.create(req.body, (err, menu) => {
-      res.send(menu)
-    })
-  })
+server.get("/createa", (req, res) => {
+  AddOns.create(req.body, (err) => {
+    AddOns.find({}, (err, find) => {
+      res.send(find);
+    });
+  });
+});
+
+server.get("/creates", (req, res) => {
+  Sizes.create(req.body, (err, size) => {
+    res.send(size);
+  });
+});
+
+server.get("/createmenu", (req, res) => {
+  Menu.create(req.body, (err, menu) => {
+    res.send(menu);
+  });
+});
 ////////////////////
 //EDIT
 
 ////////////////////
 //SHOW
-
 
 ////////////////////
 //LISTENING
@@ -134,7 +134,5 @@ db.on("error", (err) =>
 db.on("connected", () =>
   console.log(`connected to mongoDB on ${db.host}:${db.port}`)
 );
-
-
 
 // TODO: refer back to dustin post on partytime to set limters

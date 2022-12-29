@@ -22,6 +22,7 @@
 - Mongodb
 - express
 - ejs
+- heroku
 
 ## link
 
