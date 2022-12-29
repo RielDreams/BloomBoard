@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/header')%>
+  </head>
+  <body>
+    <nav>
+      <%- include('../partials/nav') %>
+    </nav>
+    <main>
+        <ul class="container">
+            <% foundMenu.forEach(menu => { %> 
+                <li class="item">
+                <a href="/menu/<%=menu._id%>"><h3><%=menu.title%></h3></a>
+                <img src="<%=menu.img%>" alt="guodaboard">
+                <p><%=menu.description%></p>
+                <% }) %>
+            </li>
+        </ul>
+    </main>
+  </body>
+</html>

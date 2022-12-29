@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/header')%>
+  </head>
+  <body>
+    <nav><%- include('../partials/nav') %></nav>
+    <main>
+      <section>
+        <h3><%=menu.title%></h3>
+        <img src="<%=menu.img%>" alt="guodaboard" />
+        <p><%=menu.description%></p>
+        <form action="/orders" method="POST">
+          <input type="submit" value="Add to orders" />
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

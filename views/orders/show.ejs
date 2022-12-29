@@ -6,23 +6,24 @@
   <body>
     <nav><%- include('../partials/nav') %></nav>
     <main id="container">
-        <form action="/orders/<%=foundOrder._id%>?_method=DELETE" method="POST">
-            <a href="/orders/<%=foundOrder._id%>">Order Numer: <%=foundOrder._id%></a>
-            <% foundOrder.size.forEach(size => {%> 
-            <div><%=size.size%></div>
-            <%})%>
-             <% foundOrder.cheese.forEach(cheese=> { %>
-            <div><%=cheese.name%></div>
-            <%})%> <% foundOrder.meats.forEach(meat => { %>
-            <div><%=meat.name%></div>
-            <%})%> <% foundOrder.addons.forEach(addon => { %>
-            <div><%=addon.name%></div>
-            <%})%>
-          <input type="submit" value="Delete" id="button" />
-          <a href="/orders/<%=foundOrder._id%>/edit"
-            ><input type="button" value="Edit" id="button"
-          /></a>
-        </form>
+      <form action="/orders/<%=foundOrder._id%>?_method=DELETE" method="POST">
+        <a href="/orders/<%=foundOrder._id%>"
+          >Order Numer: <%=foundOrder._id%></a
+        >
+        <% foundOrder.size.forEach(size => {%>
+        <div><%=size.size%></div>
+        <%})%> <% foundOrder.cheese.forEach(cheese=> { %>
+        <div><%=cheese.name%></div>
+        <%})%> <% foundOrder.meats.forEach(meat => { %>
+        <div><%=meat.name%></div>
+        <%})%> <% foundOrder.addons.forEach(addon => { %>
+        <div><%=addon.name%></div>
+        <%})%>
+        <input type="submit" value="Delete" id="button" />
+        <a href="/orders/<%=foundOrder._id%>/edit"
+          ><input type="button" value="Edit" id="button"
+        /></a>
+      </form>
     </main>
   </body>
 </html>

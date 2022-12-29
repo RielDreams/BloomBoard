@@ -1,10 +1,10 @@
-const express = require('express')
-const menuRouter = express.Router()
+const express = require("express");
+const menuRouter = express.Router();
 
 ////////////////////
-//DATA  
+//DATA
 ////////////////////
-const Menu = require('../models/menu')
+const Menu = require("../models/menu");
 
 ////////////////////
 //MIDWARE
@@ -13,16 +13,24 @@ menuRouter.use(express.static("./public"));
 
 ////////////////////
 //INDEX
-menuRouter.get('/', (req,res)=> {
-    res.send('this is the menu')
-})
+menuRouter.get("/", (req, res) => {
+  Menu.find({}, (err, foundMenu) => {
+    res.render("menu/index.ejs", {
+      foundMenu,
+      currentUser: req.session.currentUser,
+    });
+  });
+});
 
 ////////////////////
 //SHOW
 menuRouter.get("/:id", (req, res) => {
-    res.render("show.ejs", {
-      currentUser: req.session.currentUser
+  Menu.findById(req.params.id, (err, menu) => {
+    res.render("menu/shows.ejs", {
+      menu,
+      currentUser: req.session.currentUser,
     });
   });
+});
 
-module.exports = menuRouter
+module.exports = menuRouter;

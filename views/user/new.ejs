@@ -8,9 +8,11 @@
     </nav>
         <h2>Create New Account</h2>
         <form action="/user" method="POST">
-            <input type="email" name="email" id="email">
-            <input type="password" name="password" id="password">
-            <input type="submit" value="Create Account">
+          <label for="email">Email:</label>
+          <input type="email" name="email" id="Email" />
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" />
+          <input type="submit" value="Create Account">
         </form>
         <a href="/account/login">Already Have Account?</a>
     </div>

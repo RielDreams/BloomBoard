@@ -19,6 +19,7 @@ const server = express();
 const {Meats, Cheese, AddOns,} = require("./models/menuitem");
 // const AddOns = require("./models/addOns");
 // const Orders = require("./models/order");
+const Menu = require('./models/menu')
 const Sizes = require("./models/size");
 const { urlencoded } = require("express");
 const accountController = require('./controller/account')
@@ -109,6 +110,11 @@ server.get("/createm", (req, res) => {
     })
   })
 
+  server.get('/createmenu', (req,res)=> {
+    Menu.create(req.body, (err, menu) => {
+      res.send(menu)
+    })
+  })
 ////////////////////
 //EDIT
 
