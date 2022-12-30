@@ -25,7 +25,6 @@ ordersRouter.get("/", async (req, res) => {
     .populate("size")
     .populate("addons")
     .exec((err, foundOrder) => {
-      console.log(err)
       res.render("orders/index.ejs", {
         currentUser: req.session.currentUser,
         foundOrder,
