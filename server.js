@@ -46,7 +46,7 @@ server.use(
     saveUninitialized: false,
   })
 );
-mongoose.connect('mongodb+srv://admin:abc1234@cluster0.dp1j2cu.mongodb.net/bloomboards?retryWrites=true&w=majority', {
+mongoose.connect(DATABASE_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
