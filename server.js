@@ -29,7 +29,7 @@ const menuController = require("./controller/menu");
 //CONFIG
 ////////////////////
 const PORT = process.env.PORT || 3000;
-const DATABASE_URI = process.env.DATABASE_URI;
+DATABASE_URI = process.env.DATABASE_URI;
 
 ////////////////////
 //MIDWARE
