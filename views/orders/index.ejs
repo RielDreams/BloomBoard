@@ -8,7 +8,7 @@
     <main>
       <ul class="container">
         <% foundOrder.forEach(order => { %>
-        <li class="item">
+        <li class="item orderitem">
           <h3>
             <a href="/orders/<%=order._id%>">Order Numer: <%=order._id%></a>
           </h3>
@@ -31,6 +31,7 @@
         <%})%>
       </ul>
     </main>
+    <footer><%- include('../partials/footer')%></footer>
   </body>
 </html>
 
