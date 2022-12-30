@@ -1,11 +1,11 @@
 {
   "name": "projectbloomboards",
   "version": "1.0.0",
-  "description": "",
+  "description": "## WyreFrame",
   "main": "server.js",
   "engines": {
-    "node": "12.11.1"
-    },
+    "node": "19.2.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -21,7 +21,16 @@
     "express-session": "^1.17.3",
     "heroku": "^7.7.8",
     "method-override": "^3.0.0",
-    "mongoose": "^6.8.0",
+    "mongoose": "^6.8.2",
     "nodemon": "^2.0.20"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RielDreams/BloomBoards.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RielDreams/BloomBoards/issues"
+  },
+  "homepage": "https://github.com/RielDreams/BloomBoards#readme"
 }

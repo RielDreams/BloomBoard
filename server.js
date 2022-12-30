@@ -15,10 +15,7 @@ const server = express();
 ////////////////////
 //DATA
 ////////////////////
-// const Meats = require("./models/meat");
 const { Meats, Cheese, AddOns } = require("./models/menuitem");
-// const AddOns = require("./models/addOns");
-// const Orders = require("./models/order");
 const Menu = require("./models/menu");
 const Sizes = require("./models/size");
 const { urlencoded } = require("express");
@@ -26,20 +23,21 @@ const accountController = require("./controller/account");
 const userController = require("./controller/users");
 const ordersController = require("./controller/orders");
 const menuController = require("./controller/menu");
-// TODO: remove commented out sections
 
 ////////////////////
 //CONFIG
 ////////////////////
-const PORT = process.env.PORT;
-const mongoURI = process.env.MONGODB_URI;
+const PORT = process.env.PORT || 3000;
+const DATABASE_URI = process.env.DATABASE_URI;
 
 ////////////////////
 //MIDWARE
 ////////////////////
+const db = mongoose.connection;
 server.use(express.static("./public"));
 server.use(methodOverride("_method"));
-server.use(urlencoded({ extended: true }));
+server.use(urlencoded({ extended: false }));
+server.use(express.json())
 server.use(
   session({
     secret: process.env.SECRET,
@@ -47,8 +45,10 @@ server.use(
     saveUninitialized: false,
   })
 );
-mongoose.connect(mongoURI);
-const db = mongoose.connection;
+mongoose.connect(DATABASE_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 ////////////////////
 //ROUTES
@@ -134,5 +134,5 @@ db.on("error", (err) =>
 db.on("connected", () =>
   console.log(`connected to mongoDB on ${db.host}:${db.port}`)
 );
-
+db.on("disconnected", () => console.log("mongod disconnected"));
 // TODO: refer back to dustin post on partytime to set limters
