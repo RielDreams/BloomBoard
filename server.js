@@ -128,6 +128,7 @@ server.get("/createmenu", (req, res) => {
 ////////////////////
 server.listen(PORT, () => {
   console.log(`BloomBoards is now online at ${PORT}`);
+  console.log(DATABASE_URI)
 });
 db.on("error", (err) =>
   console.log("an error occured with mongodb " + err.message)
