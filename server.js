@@ -37,7 +37,7 @@ const db = mongoose.connection;
 server.use(express.static("./public"));
 server.use(methodOverride("_method"));
 server.use(urlencoded({ extended: false }));
-server.use(express.json())
+server.use(express.json());
 server.use(
   session({
     secret: process.env.SECRET,
