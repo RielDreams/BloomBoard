@@ -5,11 +5,8 @@ const ordersRouter = express.Router();
 //DATA
 ////////////////////
 const Orders = require("../models/order");
-// const Meats = require("../models/meat");
-const {Meat, Cheese, AddOns} = require("../models/menuitem");
-// const AddOns = require("../models/addOns");
+const { Meat, Cheese, AddOns } = require("../models/menuitem");
 const Sizes = require("../models/size");
-// TODO: remove commented out stuff 
 
 ////////////////////
 //MIDWARE
