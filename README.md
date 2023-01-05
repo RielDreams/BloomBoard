@@ -14,11 +14,11 @@
 
 ## Screenshots
 
-[label](img/Screenshot%202023-01-04%20at%209.34.03%20AM.png%0D)
-[label](img/Screenshot%202023-01-04%20at%209.34.39%20AM.png%0D)
-[label](img/Screenshot%202023-01-04%20at%209.34.50%20AM.png%0D)
-[label](img/Screenshot%202023-01-04%20at%209.34.58%20AM.png%0D)
-[label](img/Screenshot%202023-01-04%20at%209.35.30%20AM.png%0D)
+![Alt text](img/Screenshot%202023-01-04%20at%209.34.03%20AM.png)
+![Alt text](img/Screenshot%202023-01-04%20at%209.34.39%20AM.png)
+![Alt text](img/Screenshot%202023-01-04%20at%209.34.50%20AM.png)
+![Alt text](img/Screenshot%202023-01-04%20at%209.34.58%20AM.png)
+![Alt text](img/Screenshot%202023-01-04%20at%209.35.30%20AM.png)
 ![Alt text](img/Screenshot%202023-01-04%20at%209.35.37%20AM.png)
 
 ## technologies used
@@ -34,6 +34,8 @@
 ## link
 
 https://bloomboards.herokuapp.com
+
+https://github.com/RielDreams/BloomBoards
 
 ## future enhancements
 
