@@ -24,6 +24,8 @@
           <%})%> <% order.meats.forEach(meat => { %>
           <div id="meat"><%=meat.name%></div>
           <%})%> <% order.addons.forEach(addon => { %>
+
+          <div id="addon"><h4>add ons</h4></div>
           <div id="addon"><%=addon.name%></div>
           <%})%>
           <div id="grid-footer">
@@ -41,5 +43,3 @@
     <footer><%- include('../partials/footer')%></footer>
   </body>
 </html>
-
-<!-- TODO: turn order in table view -->

@@ -10,7 +10,7 @@
   <a href="/contact">Contact</a> |
   <% if(currentUser) { %>
 		<form action="/account?_method=DELETE" method="POST">
-			<input type="submit" value="Log Out" id="button" />
+			<input type="submit" value="Log Out" id="button"/>
 		</form>
 	<% } else { %>
     <a href="/account/login">Login</a>

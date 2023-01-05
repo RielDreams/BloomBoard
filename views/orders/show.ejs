@@ -5,14 +5,14 @@
   </head>
   <body>
     <nav><%- include('../partials/nav') %></nav>
-    <main class="container item">
+    <main class="container">
+      <section class="item">
       <form action="/orders/<%=foundOrder._id%>?_method=DELETE" method="POST">
         <a href="/orders/<%=foundOrder._id%>"
           >Order Numer: <%=foundOrder._id%></a
         >
-        <% foundOrder.size.forEach(size => {%>
-        <div><%=size.size%></div>
-        <%})%> <% foundOrder.cheese.forEach(cheese=> { %>
+        <div><%=foundOrder.size.size%></div>
+         <% foundOrder.cheese.forEach(cheese=> { %>
         <div><%=cheese.name%></div>
         <%})%> <% foundOrder.meats.forEach(meat => { %>
         <div><%=meat.name%></div>
@@ -24,6 +24,7 @@
           ><input type="button" value="Edit" id="button"
         /></a>
       </form>
+    </section>
     </main>
     <footer><%- include('../partials/footer')%></footer>
   </body>

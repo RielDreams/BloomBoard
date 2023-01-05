@@ -51,6 +51,7 @@ mongoose.connect(DATABASE_URI, {
   useUnifiedTopology: true,
 });
 
+
 ////////////////////
 //ROUTES
 ////////////////////
@@ -76,14 +77,6 @@ server.get("/contact", (req, res) => {
   });
 });
 
-////////////////////
-//NEW
-
-////////////////////
-//DESTORY
-
-////////////////////
-//UPDATE
 
 ////////////////////
 //SEED/CREATE
@@ -117,11 +110,6 @@ server.get("/createmenu", (req, res) => {
     res.send(menu);
   });
 });
-////////////////////
-//EDIT
-
-////////////////////
-//SHOW
 
 ////////////////////
 //LISTENING

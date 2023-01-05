@@ -1,65 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="google-signin-client_id" content="412846135780-d6fmkl44d2pj8jetmdnah1gifs87e390.apps.googleusercontent.com">
-    <title>Bloom Boards</title>
-    <link rel="stylesheet" href="/public/body.css" />
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <%- include('../partials/header') %>
   </head>
   <body>
-      <nav><%- include('../partials/nav') %></nav>
+    <nav><%- include('../partials/nav') %></nav>
     <main class="container">
-      <h2>Edit Your Order</h1>
+      <section class="item" id="create">
+      <h3>Edit Your Order</h3>
       <form action="/orders/<%=foundOrder._id%>?_method=put" method="POST">
-        <div class="size">
-          <label for="size">Size:</label>
-          <select name="size" id="size">
-            <% size.forEach(s => { %> 
-              <option value="<%=s._id%>"><%=s.size%> <%=s.price%></option>
-              <% })%>
-          </select>
-        </div>
-        <div class="cheese">
-          <label for="Cheese">Choose 2 cheeses</label>
-        <select name="cheese" id="cheese">
-          <% cheese.forEach(c =>{ %>
-          <option value="<%=c._id%>"><%=c.name%></option>
-          <% }) %>
-        </select>
-        <select name="cheese" id="cheese">
-          <% cheese.forEach(c =>{ %>
-          <option value="<%=c._id%>"><%=c.name%></option>
-          <% }) %>
-        </select>
-        </div>
-        <div class="meats">
-          <label for="meats">Choose 2 meats </label>
-          <select name="meats" id="meats">
-            <% meats.forEach(m => { %>
-            <option value="<%= m._id%>"><%=m.name%></option>
+         <div class="size">
+            <label for="size">Size:</label>
+            <select name="size" id="size">
+              <% size.forEach(s => { %> 
+                <option value="<%=s._id%>"><%=s.size%> <%=s.price%></option>
+                <% })%>
+            </select>
+          </div>
+          <div class="cheese">
+            <label for="Cheese">Choose 2 cheeses</label>
+            <select name="cheese" id="cheese">
+            <% cheese.forEach(c =>{ %>
+            <option value="<%=c._id%>"><%=c.name%></option>
             <% }) %>
           </select>
-          <select name="meats" id="meats">
-            <% meats.forEach(m => { %>
-            <option value="<%=m._id%>"><%=m.name%></option>
+          <select name="cheese" id="cheese">
+            <% cheese.forEach(c =>{ %>
+            <option value="<%=c._id%>"><%=c.name%></option>
+            <% }) %>
+          </select>
+          </div>
+          <div class="meats">
+            <label for="meats">Choose 2 meats </label>
+            <select name="meats" id="meats">
+              <% meats.forEach(m => { %>
+              <option value="<%= m._id%>"><%=m.name%></option>
+              <% }) %>
+            </select>
+            <select name="meats" id="meats">
+              <% meats.forEach(m => { %>
+              <option value="<%=m._id%>"><%=m.name%></option>
+              <% })%>
+            </select>
+          </div>
+         <div class="addons">
+          <label for="addons">Optional Add Ons</label>
+          <select name="addOns" id="addons">
+            <option value="null" selected>pick add on</option>
+            <% addOns.forEach(a => { %>
+            <option value="<%=a._id%>"><%=a.name%> + <%=a.price%></option>
             <% })%>
           </select>
-        </div>
-       <div class="addons">
-        <label for="addons">Optional Add Ons</label>
-        <select name="addOns" id="addons">
-          <option value="null" selected>pick add on</option>
-          <% addOns.forEach(a => { %>
-          <option value="<%=a._id%>"><%=a.name%> + <%=a.price%></option>
-          <% })%>
-        </select>
-       </div>
-       <input type="submit" value="Edit Order" id="button" />
-      </form>
-    </main>
-    <footer><%- include('../partials/footer')%></footer>
+         </div>
+         <input type="submit" value="Edit Order" id="button" />
+        </form>
+      </section>
+      </main>
+      <footer><%- include('../partials/footer')%></footer>
   </body>
 </html>

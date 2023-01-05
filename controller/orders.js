@@ -65,7 +65,6 @@ ordersRouter.put("/:id", (req, res) => {
 //CREATE
 ordersRouter.post("/", (req, res) => {
   Orders.create(req.body, (err, createdOrders) => {
-    console.log(req.body);
     res.redirect("/orders");
   });
 });
@@ -83,7 +82,6 @@ ordersRouter.get("/:id/edit", async (req, res) => {
     .populate("size")
     .populate("addons")
     .exec((err, foundOrder) => {
-      console.log(foundOrder.cheese);
       res.render("orders/edit.ejs", {
         cheese,
         meats,
