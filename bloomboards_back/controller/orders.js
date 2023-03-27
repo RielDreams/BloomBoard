@@ -5,8 +5,7 @@ const ordersRouter = express.Router();
 //DATA
 ////////////////////
 const Orders = require("../models/order");
-const { Meat, Cheese, AddOns } = require("../models/menuitem");
-const Sizes = require("../models/size");
+const { meats, cheese, addOns, size } = require("../models/menuitem");
 
 ////////////////////
 //MIDWARE
@@ -16,26 +15,16 @@ ordersRouter.use(express.static("./public"));
 ////////////////////
 //INDEX
 ordersRouter.get("/", async (req, res) => {
-  await Orders.find({})
-    .populate("meats")
-    .populate("cheese")
-    .populate("size")
-    .populate("addons")
-    .exec((err, foundOrder) => {
-      res.render("orders/index.ejs", {
-        currentUser: req.session.currentUser,
-        foundOrder,
-      });
-    });
-});
+  const foundOrder = await Orders.find({})
+  res.render("orders/index.ejs", {
+    currentUser: req.session.currentUser,
+    foundOrder,
+  });
+})
 
 ////////////////////
 //NEW
 ordersRouter.get("/new", async (req, res) => {
-  const cheese = await Cheese.find({});
-  const meats = await Meat.find({});
-  const addOns = await AddOns.find({});
-  const size = await Sizes.find({});
   res.render("orders/new.ejs", {
     cheese,
     meats,
@@ -72,16 +61,7 @@ ordersRouter.post("/", (req, res) => {
 ////////////////////
 //EDIT
 ordersRouter.get("/:id/edit", async (req, res) => {
-  const cheese = await Cheese.find({});
-  const addOns = await AddOns.find({});
-  const size = await Sizes.find({});
-  const meats = await Meat.find({});
-  Orders.findById(req.params.id)
-    .populate("meats")
-    .populate("cheese")
-    .populate("size")
-    .populate("addons")
-    .exec((err, foundOrder) => {
+  const foundOrder = Orders.findById(req.params.id)
       res.render("orders/edit.ejs", {
         cheese,
         meats,
@@ -91,7 +71,6 @@ ordersRouter.get("/:id/edit", async (req, res) => {
         currentUser: req.session.currentUser,
       });
     });
-});
 
 ////////////////////
 //SHOW

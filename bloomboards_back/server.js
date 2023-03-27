@@ -16,9 +16,8 @@ const server = express();
 ////////////////////
 //DATA
 ////////////////////
-const { Meats, Cheese, AddOns } = require("./models/menuitem");
+const { Meats, Cheese, AddOns, Size } = require("./models/menuitem");
 const Menu = require("./models/menu");
-const Sizes = require("./models/size");
 const { urlencoded } = require("express");
 const accountController = require("./controller/account");
 const userController = require("./controller/users");
@@ -81,35 +80,7 @@ server.get("/contact", (req, res) => {
 ////////////////////
 //SEED/CREATE
 ////////////////////
-server.get("/createm", (req, res) => {
-  Meats.create(req.body, (err) => {});
-});
 
-server.get("/createc", (req, res) => {
-  Cheese.create(req.body, (err, c) => {
-    res.send(c);
-  });
-});
-
-server.get("/createa", (req, res) => {
-  AddOns.create(req.body, (err) => {
-    AddOns.find({}, (err, find) => {
-      res.send(find);
-    });
-  });
-});
-
-server.get("/creates", (req, res) => {
-  Sizes.create(req.body, (err, size) => {
-    res.send(size);v
-  });
-});
-
-server.get("/createmenu", (req, res) => {
-  Menu.create(req.body, (err, menu) => {
-    res.send(menu);
-  });
-});
 
 ////////////////////
 //LISTENING
