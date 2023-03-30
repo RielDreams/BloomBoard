@@ -8,24 +8,55 @@ const User = require('../models/user')
 ////////////////////
 userRouter.use(express.static("./public"));
 
+
+///////////////////////////////
+// ROUTES
+////////////////////////////////
+
 ////////////////////
-//NEW USER
-////////////////////
-userRouter.get('/new', (req, res) => {
-    res.render('user/new.ejs', {
-        currentUser: req.session.currentUser
-    })
-})
+//INDEX
+userRouter.get("/", async (req, res) => {
+	try {
+		res.json(await User.find({}));
+	} catch (error) {
+		res.status(400).json(error);
+	}
+});
 
 
 ////////////////////
-//CREATE NEW USER
+//DELETE
 ////////////////////
-userRouter.post('/', (req,res) => {
-    req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
-    User.create(req.body, (err, createdUser) => {
-        res.redirect('/')
-    })
-})
+userRouter.delete("/:id", async (req, res) => {
+	try {
+		res.json(await User.findByIdAndRemove(req.params.id));
+	} catch (error) {
+		res.status(400).json(error);
+	}
+});
+
+////////////////////
+//UPDATE
+////////////////////
+userRouter.put("/:id", async (req, res) => {
+	try {
+		res.json(
+			await User.findByIdAndUpdate(req.params.id, req.body, { new: true })
+		);
+	} catch (error) {
+		res.status(400).json(error);
+	}
+});
+
+////////////////////
+//CREATE
+////////////////////
+userRouter.post('/', async (req, res) => {
+	try {
+		res.json(await User.create(req.body));
+	} catch (error) {
+		res.status(400).json(error);
+	}
+});
 
 module.exports = userRouter

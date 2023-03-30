@@ -30,12 +30,12 @@ const Right = styled.div`
 
 const Navlinks = styled.div`
 font-size: 14px;
-margin-left: 25px
+margin-left: 25px;
 `
 
 
 
-function Navbar() {
+function Navbar({user}) {
   return (
     <Container>
       <Wrapper>
@@ -44,40 +44,43 @@ function Navbar() {
         </Left>
         <Right>
           <Navlinks>
-          <a href="/">Home</a> 
+          <a href="/">Home </a> 
           </Navlinks>
-          | 
+          
           <Navlinks>
-          <a href="/menu">Menu</a>
+          <a href="/platterideas">Platter Ideas</a>
           </Navlinks>
-          |
+          
           <Navlinks>
           <a href="/orders/new">Create order</a> 
           </Navlinks>
-          |
-          <Navlinks>
-          <a href="/orders">orders</a>
-          </Navlinks> 
-          |
+          
           <Navlinks>
             <a href="/contact">Contact</a> 
           </Navlinks>
-          |
-          <Navlinks>
-            <Badge badgeContent={2}>
-              <ShoppingCartCheckoutIcon/>
-            </Badge>
-          </Navlinks>
-          <Navlinks>
-            <form action="/account?_method=DELETE" method="POST">
-              <input type="submit" value="Log Out" id="button"/>
-          </form>
-          </Navlinks>
           
-          <Navlinks>
-          <a href="/account/login">Login</a>
-          </Navlinks>
-          
+          {user ? <div>
+            <Navlinks>
+            <a href="/orders">orders</a>
+            </Navlinks> 
+            
+            <Navlinks>
+              <Badge badgeContent={2}>
+                <ShoppingCartCheckoutIcon/>
+              </Badge>
+            </Navlinks>
+            
+            <Navlinks>
+              <form action="/account?_method=DELETE" method="POST">
+                <input type="submit" value="Log Out" id="button"/>
+            </form>
+            </Navlinks> 
+            </div>
+            : 
+            <Navlinks>
+            <a href="/account/login">Login</a>
+            </Navlinks>
+          }
         </Right>
     </Wrapper>
   </Container>

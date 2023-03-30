@@ -6,24 +6,15 @@ const menuRouter = express.Router();
 ////////////////////
 const Menu = require("../models/menu");
 
-////////////////////
-//MIDWARE
-////////////////////
-menuRouter.use(express.static("./public"));
 
 ////////////////////
 //INDEX
-async function getMenu(){
-  const menu = await Menu.find({})
-  return menu;
-}
-
 menuRouter.get("/", async (req, res) => {
-  const foundMenu = await Menu.find({})
-  res.render("menu/index.ejs", {
-    foundMenu,
-    currentUser: req.session.currentUser,
-  })
+  try {
+    res.json(await Menu.find({}))
+  } catch (error) {
+    res.status(400).json(error)
+  }
 })
 ;
 

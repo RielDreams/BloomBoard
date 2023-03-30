@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 mongoose.set('strictQuery', false)
 const methodOverride = require("method-override");
 const session = require("express-session");
+const cors = require('cors')
 
 ////////////////////
 //intializing
@@ -45,10 +46,33 @@ server.use(
     saveUninitialized: false,
   })
 );
+server.use(cors())
 mongoose.connect(DATABASE_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+/////////////////////////
+//firebase Authentication
+////////////////////////
+app.use(async function (req, res, next) {
+	try {
+		const token = req.get("Authorization");
+		if (token) {
+			const user = await getAuth().verifyIdToken(token.replace("Bearer ", ""));
+			req.user = user;
+		} else {
+			req.user = null;
+		}
+	} catch (error) {
+		// perform additional task to follow up
+		req.user = null;
+	}
+	next(); // this function invokes next middleware function
+});
+function isAuthenticated(req, res, next) {
+	if (req.user) return next();
+	res.status(401).json({ message: "you must login first" });
+}
 
 
 ////////////////////
@@ -56,25 +80,15 @@ mongoose.connect(DATABASE_URI, {
 ////////////////////
 
 ////////////////////
-//controller
+//CONTROLLER
 server.use("/orders", ordersController);
 server.use("/account", accountController);
 server.use("/user", userController);
 server.use("/menu", menuController);
 
+
 ////////////////////
 //INDEX
-server.get("/", (req, res) => {
-  res.render("index.ejs", {
-    currentUser: req.session.currentUser,
-  });
-});
-
-server.get("/contact", (req, res) => {
-  res.render("contact.ejs", {
-    currentUser: req.session.currentUser,
-  });
-});
 
 
 ////////////////////

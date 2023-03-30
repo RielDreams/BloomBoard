@@ -30,7 +30,8 @@ const Arrow = styled.div`
 const Wrapper = styled.div`
     height: 100%;
     display: flex;
-    transform: translateX(0vw)
+    transition: all 1.5s ease;
+    transform: translateX(${props=>props.slideIndex * -100}vw);
 `
 
 const Slide = styled.div`
@@ -65,46 +66,43 @@ font-size: 1.2rem;
 background-color: transparent;`
 
 
-function Slider() {
+function Slider({menu}) {
     const[slideIndex, setSlideIndex] = useState(0)
+    const handleClick = (direction) => {
+        if(direction==="left"){
+            setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2)
+        } else {
+            setSlideIndex(slideIndex < menu.length-1 ? slideIndex + 1 : 0)
+        }
+    }
 
 
-    const handleClick = (direction) => {}
-
-
-
+    const loaded = () => {
   return <Container>
     <Arrow direction="left" onClick={()=>handleClick('left')}>
         <ArrowLeftIcon/>
     </Arrow>
-    <Wrapper>
+    <Wrapper slideIndex={slideIndex}>
+        {menu.map((menu) => (
         <Slide>
         <ImgContainer>
-            <Image src='https://i.imgur.com/JUJit7V.jpg'></Image>
+            <Image src={menu.img}></Image>
         </ImgContainer>
         <Info>
-        <Title>JOCE</Title>
-            <Desc>GREAT</Desc>
+        <Title>{menu.title}</Title>
+            <Desc>{menu.description}</Desc>
             <Button>Add to cart</Button>
         </Info>
         </Slide>
+        ))}
     </Wrapper>
-    <Wrapper>
-        <Slide>
-        <ImgContainer>
-            <Image src='https://i.imgur.com/JUJit7V.jpg'></Image>
-        </ImgContainer>
-        <Info>
-        <Title>JOCE</Title>
-            <Desc>GREAT</Desc>
-            <Button>Add to cart</Button>
-        </Info>
-        </Slide>
-    </Wrapper>
+    
     <Arrow direction='right' onClick={()=>handleClick('right')}>
         <ArrowRightIcon/>
     </Arrow>
   </Container>
+}
+return menu ? loaded() : <h1>Loading ...</h1>
 }
 
 export default Slider
