@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import Main from "./Main";
 import Footer from "./components/Footer";
+import MenuItem from "./Pages/MenuItem";
 
 import Announcement from "./components/Announcement";
+import Menu from "./Pages/Menu";
 
 
 function App() {

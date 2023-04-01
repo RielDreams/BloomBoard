@@ -54,7 +54,7 @@ mongoose.connect(DATABASE_URI, {
 /////////////////////////
 //firebase Authentication
 ////////////////////////
-app.use(async function (req, res, next) {
+server.use(async function (req, res, next) {
 	try {
 		const token = req.get("Authorization");
 		if (token) {

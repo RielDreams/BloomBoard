@@ -18,15 +18,5 @@ menuRouter.get("/", async (req, res) => {
 })
 ;
 
-////////////////////
-//SHOW
-menuRouter.get("/:id", async (req, res) => {
-  const menu = await Menu.findById(req.params.id);
-  res.render("menu/shows.ejs", {
-    menu,
-    currentUser: req.session.currentUser,
-  });
-  });
-;
 
 module.exports = menuRouter;

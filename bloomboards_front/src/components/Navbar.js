@@ -7,7 +7,7 @@ const Container = styled.div`
   height: 10rem;
 `
 const Wrapper = styled.div`
-  padding: 5px 30px;  
+  padding: 5px 3px;  
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -59,9 +59,9 @@ function Navbar({user}) {
             <a href="/contact">Contact</a> 
           </Navlinks>
           
-          {user ? <div>
+          {user ? <>
             <Navlinks>
-            <a href="/orders">orders</a>
+            <a href="/orders">Orders</a>
             </Navlinks> 
             
             <Navlinks>
@@ -75,11 +75,15 @@ function Navbar({user}) {
                 <input type="submit" value="Log Out" id="button"/>
             </form>
             </Navlinks> 
-            </div>
-            : 
+            </>
+            : <>
             <Navlinks>
-            <a href="/account/login">Login</a>
+            <a href="/login">Login</a>
             </Navlinks>
+            <Navlinks>
+              <a href="/registration">Sign up</a>
+            </Navlinks>
+            </>
           }
         </Right>
     </Wrapper>
