@@ -85,7 +85,7 @@ function Slider({menu}) {
     </Arrow>
     <Wrapper slideIndex={slideIndex}>
         {menu.map((menu) => (
-        <Slide>
+        <Slide key={menu._id}>
         <ImgContainer>
             <Image src={menu.img}></Image>
         </ImgContainer>

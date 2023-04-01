@@ -68,7 +68,7 @@ const Icon = styled.div`
 const MenuItem = ({item}) => {
 
     const loaded = () => {
-  return <Container>
+  return <Container key={item._id}>
         <Image src={item.img}/>
         <Info>
             <Icon>

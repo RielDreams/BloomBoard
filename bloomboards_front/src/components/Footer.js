@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import EmailIcon from '@mui/icons-material/Email';
 
 
 const Container = styled.div`
@@ -14,15 +15,6 @@ const Left = styled.div`
   flex-direction: column;
   padding: 1.2rem;
 `
-
-const Right = styled.div`
-  flex: 1;
-`
-
-const Center = styled.div`
- flex: 1;
-`
-
 const Logo = styled.h1`
   
 `
@@ -32,13 +24,34 @@ const Description = styled.p`
 `
 
 const SocialContainer = styled.div`
-  display: flex;
+  display: flex;`
 
+
+const Center = styled.div`
+ flex: 1;
+ padding: 1.2rem;
+`
+
+const Title = styled.h3`
+  margin-bottom: 2rem;
+`
+
+const List = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+`
+
+const ListItem = styled.li`
+width: 50%;
+margin: .5rem;
 `
 
 const Icon = styled.div`
-  width: 2.8rem;
-  height: 2.8rem;
+  width: 2.2rem;
+  height: 2.2rem;
   border-radius: 50%;
   color: white;
   background-color: #${props=>props.color};
@@ -46,8 +59,19 @@ const Icon = styled.div`
   align-items: center;
   justify-content: center;
 `
+const Right = styled.div`
+  flex: 1;
+  padding: 1.2rem;`
 
+const ContactItem = styled.div`
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+`
 
+const Payment = styled.img`
+  width: 50%;
+`
 
 function Footer() {
   return (
@@ -70,18 +94,30 @@ function Footer() {
       </Left>
       
       <Center>
-      <img src="https://i.imgur.com/yEMsjRJ.png" alt="logo" /> 
-       <ul id="footer" className="flex justify-center items-center">
-        <li>
-            instagram: <a href="https://www.instagram.com/bloomboardscharcuterie_/">bloomboardscharcuterie_</a>
-        </li>
-        <li>
-             Facebook:<a href="https://www.facebook.com/bloomboardscharcuterie">Bloom Boards Charcuterie</a>
-        </li>
-       </ul>
+      <Title>
+        UseFul Links
+      </Title>
+      <List>
+        <ListItem>Home</ListItem>
+        <ListItem>Cart</ListItem>
+        <ListItem>Order History</ListItem>
+        <ListItem>My Account</ListItem>
+        <ListItem>Favorites</ListItem>
+      </List>
       </Center>
       <Right>
-
+        <Title>Contact</Title>
+        <ContactItem>
+          num 1
+        </ContactItem>
+        <ContactItem>
+          2
+        </ContactItem>
+        <ContactItem>
+          <EmailIcon style={{marginRight:'.8rem'}}/>
+          BloomBoards@gmail.com
+        </ContactItem>
+        <Payment/>
       </Right>
       
     </Container>
