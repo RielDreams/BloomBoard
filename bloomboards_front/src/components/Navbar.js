@@ -51,9 +51,7 @@ function Navbar({user}) {
           <a href="/platterideas">Platter Ideas</a>
           </Navlinks>
           
-          <Navlinks>
-          <a href="/orders/new">Create order</a> 
-          </Navlinks>
+          
           
           <Navlinks>
             <a href="/contact">Contact</a> 
@@ -61,12 +59,12 @@ function Navbar({user}) {
           
           {user ? <>
             <Navlinks>
-            <a href="/orders">Orders</a>
-            </Navlinks> 
-            
+            <a href="/orders/new">Create order</a> 
+            </Navlinks>
+
             <Navlinks>
               <Badge badgeContent={2}>
-                <ShoppingCartCheckoutIcon/>
+              <a href="/orders"><ShoppingCartCheckoutIcon/></a>
               </Badge>
             </Navlinks>
             

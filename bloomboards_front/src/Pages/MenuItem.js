@@ -19,27 +19,22 @@ transition: all 0.5s ease;
 `
 
 const Container = styled.div`
-flex: 1;
+
 margin: .4rem;
-min-width: 17.5rem;
+width: 20rem;
 height: 20rem;
 display: flex;
 align-items: center;
 justify-content: center;
 background-color: #f5fbfd;
 position: relative;
+flex-wrap: wrap;
 
 &:hover ${Info}{
     opacity: 1;
 }
 `
 
-const Circle = styled.div`
-    width: 10rem;
-    height: 10rem;
-    border-radius: 50%;
-    background-color: white;
-`
 
 const Image = styled.img`
     height: 75%;

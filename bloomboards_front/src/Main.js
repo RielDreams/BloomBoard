@@ -6,6 +6,7 @@ import Registration from "./Pages/Registration";
 import Login from "./Pages/Login";
 import Menu from "./Pages/Menu";
 import MenuItem from "./Pages/MenuItem";
+import CreateOrder from "./Pages/CreateOrder";
 
 function Main({createUser, setUser}) {
 const [menu, setMenu] = useState(null)
@@ -34,10 +35,12 @@ useEffect(()=> {
             />
             <Route path='/login'
             element={<Login setUser={setUser}/>}/>
-            <Route path='/menu'
+            <Route path='/platterideas'
             element={<Menu menu={menu} />}/>
-            <Route path='/menu/:id'
+            <Route path='/platterideas/:id'
             element={<MenuItem menu={menu} />}/>
+            <Route path='/orders/new'
+            element={<CreateOrder/>}/>
 
         </Routes>
     </main>

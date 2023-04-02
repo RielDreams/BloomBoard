@@ -49,7 +49,7 @@ width: 50%;
 margin: .5rem;
 `
 
-const Icon = styled.div`
+const Icon = styled.a`
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 50%;
@@ -84,7 +84,8 @@ function Footer() {
           Best Cheese baords in NYC
         </Description>
         <SocialContainer>
-          <Icon color="3b5999">
+          <a href="www.google.com">face</a>
+          <Icon color="3b5999" >
             <FacebookIcon/>
           </Icon>
           <Icon color="e4405f">

@@ -6,7 +6,8 @@ const Container = styled.div`
 padding: 1.2rem;
 display: flex;
 flex-wrap: wrap;
-justify-content: space-between;
+justify-content: space-evenly;
+
 `
 
 const Menu = ({menu}) => {
