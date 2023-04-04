@@ -7,6 +7,7 @@ const orderSchema = new Schema(
     cheese: [{ type: Schema.Types.ObjectId, ref: "Cheese" }],
     meats: [{ type: Schema.Types.ObjectId, ref: "Meat" }],
     addons: [{ type: Schema.Types.ObjectId, ref: "AddOns" }],
+    uid: String,
   },
   { timestamps: true }
 );

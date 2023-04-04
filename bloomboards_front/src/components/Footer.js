@@ -3,10 +3,12 @@ import styled from 'styled-components'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import EmailIcon from '@mui/icons-material/Email';
+import { mobile } from '../Responsive';
 
 
 const Container = styled.div`
   display: flex;
+  ${mobile({flexDirection: "column"})}
 `
 
 const Left = styled.div`
@@ -30,6 +32,7 @@ const SocialContainer = styled.div`
 const Center = styled.div`
  flex: 1;
  padding: 1.2rem;
+ ${mobile({display: "none"})}
 `
 
 const Title = styled.h3`
@@ -61,7 +64,8 @@ const Icon = styled.a`
 `
 const Right = styled.div`
   flex: 1;
-  padding: 1.2rem;`
+  padding: 1.2rem;
+  ${mobile({backgroundColor: "lightgreen"})}`
 
 const ContactItem = styled.div`
   margin-bottom: 1.2rem;
@@ -74,6 +78,7 @@ const Payment = styled.img`
 `
 
 function Footer() {
+
   return (
     <Container>
       <Left>
@@ -84,7 +89,6 @@ function Footer() {
           Best Cheese baords in NYC
         </Description>
         <SocialContainer>
-          <a href="www.google.com">face</a>
           <Icon color="3b5999" >
             <FacebookIcon/>
           </Icon>

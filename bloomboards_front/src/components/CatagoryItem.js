@@ -1,16 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
+import { mobile } from '../Responsive'
 
 const Container = styled.div`
     flex: 1;
     margin: .2rem;
     height: 70vh;
     position: relative;
+    display: flex;
+    align-items: center;
 `
 
 const Image = styled.img`
     width: 100%;
     object-fit: cover;
+    ${mobile({height: "20vh"})}
 `
 
 const Info = styled.div`

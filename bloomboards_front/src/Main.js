@@ -7,6 +7,8 @@ import Login from "./Pages/Login";
 import Menu from "./Pages/Menu";
 import MenuItem from "./Pages/MenuItem";
 import CreateOrder from "./Pages/CreateOrder";
+import Product from "./Pages/Product";
+import Cart from "./Pages/Cart";
 
 function Main({createUser, setUser}) {
 const [menu, setMenu] = useState(null)
@@ -41,6 +43,10 @@ useEffect(()=> {
             element={<MenuItem menu={menu} />}/>
             <Route path='/orders/new'
             element={<CreateOrder/>}/>
+            <Route path='/numberboards'
+            element={<Product/>}/>
+            <Route path='cart'
+            element={<Cart/>}/>
 
         </Routes>
     </main>

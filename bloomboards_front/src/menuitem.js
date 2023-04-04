@@ -1,6 +1,3 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
-
 const cheese = [{name: 'Brie'},{name: 'Feta'},{name: 'Swiss'},{name: 'Goat'},{name: 'Gouda'},{name: 'Asiago'},{name: 'Havarti'},{name: 'Queso Fresco'},{name: 'Gruyere'},{name: 'Jarlsberg'},{name: 'Provolone'},{name: 'Manchego'},{name: 'Parmesan'},{name: 'Blue Cheese'},{name: 'Colby-Jack'},{name: 'Camembert'},{name: 'Pepper-Jack'},{name: 'Mozzarella'},{name: 'Sharp White Cheddar'},{name: 'Sharp Cheddar'},]
 
 const meats = [{name: 'Bresaola'},{name: 'Capocollo'},{name: 'Calabrese'},{name: 'Pepperoni'},{name: 'Soppressata'},{name: 'Spicy Salami'},{name: 'Beef Salami'},{name: 'Honey Turkey'},{name: 'Pepper Salami'},,{name: 'Genoa Salami'},{name: 'Serrano Ham'},{name: 'Prosciutto'},{name: 'Italian Salami'}]
@@ -17,10 +14,6 @@ price: 75},
 price: 115},
 {size: 'X-Large',
 price: 150}]
-  
-// Sizes = mongoose.model("Sizes", sizeSchema);
 
 
-
-
-module.exports = {meats, cheese, addOns, size}
+module.exports= {meats, addOns, size, cheese}

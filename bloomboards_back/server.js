@@ -17,10 +17,7 @@ const server = express();
 ////////////////////
 //DATA
 ////////////////////
-const { Meats, Cheese, AddOns, Size } = require("./models/menuitem");
-const Menu = require("./models/menu");
 const { urlencoded } = require("express");
-const accountController = require("./controller/account");
 const userController = require("./controller/users");
 const ordersController = require("./controller/orders");
 const menuController = require("./controller/menu");
@@ -82,7 +79,6 @@ function isAuthenticated(req, res, next) {
 ////////////////////
 //CONTROLLER
 server.use("/orders", ordersController);
-server.use("/account", accountController);
 server.use("/user", userController);
 server.use("/menu", menuController);
 

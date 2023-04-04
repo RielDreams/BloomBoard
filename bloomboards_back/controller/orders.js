@@ -5,7 +5,7 @@ const ordersRouter = express.Router();
 //DATA
 ////////////////////
 const Orders = require("../models/order");
-const { meats, cheese, addOns, size } = require("../models/menuitem");
+const { meats, cheese, addOns, size } = require("../../bloomboards_front/src/menuitem");
 
 ////////////////////
 //MIDWARE
