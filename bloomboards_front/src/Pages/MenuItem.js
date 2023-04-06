@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { mobile } from '../Responsive';
 
 const Info = styled.div`
 opacity: 0;

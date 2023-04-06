@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { mobile } from '../Responsive'
 
@@ -32,6 +33,7 @@ const Info = styled.div`
 const Title = styled.h1`
     color: white;
     margin-bottom: 1.2rem;
+    text-shadow: 1px 0 black;
 `
 
 const Button = styled.button`
@@ -40,6 +42,12 @@ const Button = styled.button`
     background-color: white;
     color: grey;
     font-weight: 500;
+    cursor: pointer;
+
+    &:hover{
+    background-color: green;
+    color: white;
+  }
 `
 
 
@@ -51,7 +59,9 @@ const CatagoryItem = ({item}) => {
         <Image src={item.img}/>
         <Info>
             <Title>{item.title}</Title>
-            <Button>Check it out!</Button>
+            <Link to={item.url}> 
+                <Button>Check it out!</Button>
+            </Link>
         </Info>
     </Container>
   )

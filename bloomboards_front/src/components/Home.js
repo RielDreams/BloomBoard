@@ -6,6 +6,7 @@ import Newsletter from './Newsletter'
 import Categories from './Categories'
 import Cart from '../Pages/Cart'
 
+
 function Home({menu}) {
  return <>
 

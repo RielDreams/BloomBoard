@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import { Badge } from '@mui/material';
 import { mobile } from '../Responsive';
+import { logOut } from '../firebase';
 
 const Container = styled.div`
   height: 10rem;
@@ -68,9 +69,7 @@ function Navbar({user}) {
               </Badge>
             </Navlinks>
             <Navlinks>
-              <form action="/account?_method=DELETE" method="POST">
-                <input type="submit" value="Log Out" id="button"/>
-            </form>
+          <button onClick={logOut}>Logout</button>
             </Navlinks> 
             </>
             : <>

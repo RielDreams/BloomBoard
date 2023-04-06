@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { meats, cheese, addOns, size } from '../menuitem'
+import { meats, cheese, addOns} from '../menuitem'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { mobile } from '../Responsive';
 
+const number = [1,2,3,4,5,6,7,8,9,0] 
+const size = [{Size: 8, price: 30},{size: 12, price: 35}, {size: 16, price:40} ]
 
 const Container = styled.div`
     
@@ -108,7 +110,7 @@ const Price = styled.span`
   font-size: 2.5rem;
 `
 
-const Product = () => {
+const NumberBoards = () => {
 
   return (
     <Container>
@@ -125,6 +127,14 @@ const Product = () => {
                 <OrderSelect >
                   {size.map(size => (
                     <OrderOption >{size.size}</OrderOption>
+                    ))}
+                  </OrderSelect>
+              </OrderChoices>
+              <OrderChoices>
+                <OrderTitle>Number</OrderTitle>
+                <OrderSelect >
+                  {number.map(num => (
+                    <OrderOption >{num}</OrderOption>
                     ))}
                   </OrderSelect>
               </OrderChoices>
@@ -171,4 +181,4 @@ const Product = () => {
   )
 }
 
-export default Product
+export default NumberBoards

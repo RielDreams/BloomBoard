@@ -2,6 +2,7 @@ import Add from '@mui/icons-material/Add'
 import Remove from '@mui/icons-material/Remove'
 import React from 'react'
 import styled from 'styled-components'
+import { mobile } from '../Responsive'
 
 
 const Container = styled.div`
@@ -10,6 +11,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
     padding: 1rem;
+    ${mobile({padding: "10px"})}
 `
 
 const Title = styled.h1`
@@ -32,7 +34,7 @@ const TopButton = styled.button`
     background-color: ${props=>props.type === 'filled' ? "black" : "transparent"};
 `
 const TopTexts = styled.div`
-    
+      ${mobile({display: "none"})}
 `
 
 const TopText = styled.span`
@@ -46,6 +48,7 @@ const TopText = styled.span`
 const Product = styled.div`
     display: flex;
     justify-content: space-between;
+    ${mobile({flexDirection: "column"})}
 `
 
 const ProductDetail = styled.div`
@@ -95,11 +98,13 @@ const ProductAmountContainer = styled.div`
 const ProductAmount = styled.div`
     font-size: 1.5rem;
     margin: .4rem;
+    ${mobile({marigin: ".8rem"})}
 `
 
 const Price = styled.div`
 font-size: 2rem;
 font-weight: 200;
+${mobile({marginBottom: "1.2rem"})}
     
 `
 
@@ -112,6 +117,7 @@ const Hr = styled.hr`
 const Bottom = styled.div`
     display: flex;
     justify-content: space-between;
+    ${mobile({flexDirection: "column"})}
 `
 
 const Info = styled.div`

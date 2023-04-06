@@ -62,18 +62,35 @@ function Registration (props) {
         <Container>
             <Wrapper>
                 <Title>Registration</Title>
-                <Form>
-                    <Input placeholder='Name'/>
+                <Form onSubmit={handleSubmit}>
+                    <Input value={name} 
+              name="name" 
+              onChange={(e) => setName(e.target.value)} 
+              id="name" 
+              placeholder="full Name"/>
                     <Input placeholder='Last Name'/>
                     <Input placeholder='Username'/>
-                    <Input placeholder='Email'/>
-                    <Input placeholder='Password'/>
+                    <Input value={email} 
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              placeholder="youremail@gmail.com" 
+              id="email"
+              name="email"/>
+                    <Input  value={pass} 
+              onChange={(e) => setPass(e.target.value)} 
+              type="password" 
+              placeholder="********" 
+              id="password" 
+              name="password" />
                     <Input placeholder='Confirm Password'/>
                     <Agreement>
                         By creating an account, I consent to the processing of my personal data in accordance with <b> PRIVACY POLICY</b>
                     </Agreement>
-                    <Button> Create</Button>
+                    <Button type="submit"> Create</Button>
                 </Form>
+                <Link to='/login'>
+                    <Button >already have an account? login here</Button>
+                </Link>
             </Wrapper>
         </Container>
        

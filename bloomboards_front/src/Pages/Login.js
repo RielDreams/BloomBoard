@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { logIn, logOut } from "../Firebase";
+import { logIn, logOut } from "../firebase";
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import { mobile } from "../Responsive";
@@ -45,6 +45,7 @@ const Button = styled.button`
     padding: 1rem 1.2rem;
     background-color: green;
     color: white;
+    cursor: pointer;
 `
 
  function Login (props) {
@@ -64,6 +65,7 @@ const Button = styled.button`
                     <Input placeholder='Username'/>
                     <Input placeholder='Password'/>
                     <Button>Login</Button>
+                    <Button onClick={(logIn)}>Login with Google</Button>
                     <Link>Don't Remember password?</Link>
                     <Link to='/registration'>Don't have an account? Register here</Link>
                 </Form>
