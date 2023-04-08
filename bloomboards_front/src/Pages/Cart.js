@@ -2,6 +2,7 @@ import Add from '@mui/icons-material/Add'
 import Remove from '@mui/icons-material/Remove'
 import React from 'react'
 import styled from 'styled-components'
+import Pay from '../components/Pay'
 import { mobile } from '../Responsive'
 
 
@@ -32,6 +33,10 @@ const TopButton = styled.button`
     border: ${props=>props.type === 'filled' && "none"};
     color: ${props=>props.type === 'filled' && 'white' };
     background-color: ${props=>props.type === 'filled' ? "black" : "transparent"};
+
+    &:hover {
+    background-color: green;
+}
 `
 const TopTexts = styled.div`
       ${mobile({display: "none"})}
@@ -160,6 +165,11 @@ padding: .6rem;
 background-color: black;
 color: white;
 font-weight: 600;
+cursor: pointer;
+
+&:hover {
+    background-color: green;
+}
 `
 
 const Cart = () => {
@@ -218,7 +228,7 @@ const Cart = () => {
                         <SummaryItemText >Total</SummaryItemText>
                         <SummaryItemPrice>20$</SummaryItemPrice>
                     </SummaryItem>
-                    <Button>Checkout NOW</Button>
+                    <Pay/>
                 </Summary>
             </Bottom>
         </Wrapper>

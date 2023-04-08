@@ -12,53 +12,35 @@ import Announcement from "./components/Announcement";
 
 function App() {
 const [user, setUser] = useState(null)
+console.log(user)
 const USER_URL = "http://localhost:4000/user/"
+
+useEffect(() => {
+  const getToken = async () => {
+    if (user) {
+      const token = await user.getIdToken()
+      console.log(token)
+    } else {
+      //set orders to null
+    }
+  }
+  getToken()
+}, [user])
 
 
 useEffect(()=> {
-  onAuthStateChanged(auth, (user) => setUser(user));
+  const unsubscribe = onAuthStateChanged(auth, (user) => setUser(user));
+  return () => {
+    // Clean Up Actions
+    unsubscribe()
+  }
 }, [])
-
-
- //GET
- const getUser = async () => {
-  const response = await fetch(USER_URL);
-  const data = await response.json();
-  setUser(data);
-};
-
-//CREATE
-const createUser = async (user) => { //user param will be an object of key:value pairs
-  await fetch(USER_URL, {
-    method: 'POST',
-    headers: {'Content-type': 'Application/json'},
-    //set req body
-    body: JSON.stringify(user),
-  })
-  getUser()
-}
-
-//UPDATE
-const updateUser = async (id, updatedUser) => {
-  await fetch(USER_URL + id, {
-    method: 'PUT',
-    headers: {'Content-type':'Application/json'},
-    body: JSON.stringify(updatedUser)
-  })
-  getUser()
-}
-
-//DELETE
-const deleteUser = async (id) => {
-  await fetch(USER_URL + id, {method:'DELETE'})
-  getUser()
-} 
 
   return (
     <div className="App">
       <Announcement/>
       <Navbar user={user}/>
-      <Main user={user} setUser={setUser} createUser={createUser}/>
+      <Main user={user} setUser={setUser} />
       <Footer/>
     </div>
   );

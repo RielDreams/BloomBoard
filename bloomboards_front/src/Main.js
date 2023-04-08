@@ -31,7 +31,7 @@ useEffect(()=> {
     <main>
         <Routes>
             <Route 
-            path='/'
+            exact path='/'
             element={<Home menu={menu} />} />
             <Route 
             path='/registration'

@@ -55,7 +55,6 @@ function Registration (props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.createUser()
     }
 
     return (

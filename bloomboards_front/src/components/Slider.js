@@ -66,7 +66,14 @@ letter-spacing: .2rem;`
 const Button = styled.button`
 padding: 1rem;
 font-size: 1.2rem;
-background-color: transparent;`
+background-color: transparent;
+cursor: pointer;
+
+&:hover{
+    background-color: green;
+    color: white;
+}
+`
 
 
 function Slider({menu}) {
