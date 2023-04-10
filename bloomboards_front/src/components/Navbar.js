@@ -5,6 +5,7 @@ import { Badge } from '@mui/material';
 import { mobile } from '../Responsive';
 import { logOut } from '../firebase';
 
+
 const Container = styled.div`
   height: 10rem;
 

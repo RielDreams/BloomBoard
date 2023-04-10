@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 import styled from "styled-components";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { mobile } from "../Responsive";
 import { meats, cheese, size, addOns } from '../menuitem'
 
@@ -17,14 +18,22 @@ const Container = styled.div`
 const Wrapper = styled.div`
     padding: 1.2rem;
     max-width: 40%;
-    background-color: white;
     ${mobile({width: "75%"})}
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:rgba(255,255,255, 0.8);
+    -moz-box-shadow: 0rem 1rem 2rem rgba(0,0,0,.5);
+-webkit-box-shadow: 0rem 1rem 2rem rgba(0,0,0,.5);
+box-shadow: 0rem 1rem 2rem rgba(0,0,0,.5);
     `
 
 const Title = styled.h1`
 font-size: 1.5rem;
 font-weight: 300;
 text-align: center;
+width:100%;
 `
 
 const Form = styled.form`
@@ -34,8 +43,10 @@ flex-wrap: wrap;
 
 const Agreement = styled.span`
 font-size: .9rem;
-margin: 1.2rem 0;`
-
+margin: 1.2rem 0;
+text-align: center;
+width: 100%;
+`
 
 const Button = styled.button`
     width: 100%;
@@ -63,6 +74,7 @@ const OrderChoices = styled.div`
   align-items: center;
   flex-wrap: wrap;
   flex-direction: column;
+  min-width: 10rem;
 `
 
 const OtherChoices = styled.div`
@@ -88,14 +100,10 @@ const OrderSelect = styled.select`
   border: 1px solid #dddddd;
   cursor: pointer;
   border-radius: 5px;
+  width: 100%;
+  max-width: 10rem;
 
 
-  // replace default styling
-
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  
   &:focus {
 
   }
@@ -110,6 +118,11 @@ margin-left: .4rem;
 padding:.3rem;
 font-size:1rem;
 background-color: #ffffff;
+
+
+&:hover{
+  color: green
+}
 `
 
 //REQUEST BOX
@@ -120,6 +133,7 @@ const SpecialRequestText = styled.textarea`
   resize: none;
   margin: .4rem;
   padding: .1rem;
+  text-align: center;
 `
 
 const CreateOrder = () => {

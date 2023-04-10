@@ -15,7 +15,10 @@ const Container = styled.div`
 const Wrapper = styled.div`
     padding: 1.2rem;
     width: 40%;
-    background-color: white;
+    background-color:rgba(255,255,255, 0.8);
+    -moz-box-shadow: 0rem 1rem 2rem rgba(0,0,0,.5);
+-webkit-box-shadow: 0rem 1rem 2rem rgba(0,0,0,.5);
+box-shadow: 0rem 1rem 2rem rgba(0,0,0,.5);
     ${mobile({width: "75%"})}
     `
 
