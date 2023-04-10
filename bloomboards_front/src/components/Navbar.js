@@ -61,11 +61,11 @@ function Navbar({user}) {
           </Navlinks>
           {user ? <>
             <Navlinks>
-            <a href="/orders/new">Create order</a> 
+            <a href="/createorder">Create order</a> 
             </Navlinks>
             <Navlinks>
               <Badge badgeContent={2}>
-              <a href="/orders"><ShoppingCartCheckoutIcon/></a>
+              <a href="/Cart"><ShoppingCartCheckoutIcon/></a>
               </Badge>
             </Navlinks>
             <Navlinks>

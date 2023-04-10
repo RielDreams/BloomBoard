@@ -3,11 +3,13 @@ const Schema = mongoose.Schema;
 
 const orderSchema = new Schema(
   {
-    size: { type: Schema.Types.ObjectId, ref: 'Size' },
+    size: { type: String, ref: 'Size' },
     number: {type: Number},
-    cheese: [{ type: Schema.Types.ObjectId, ref: "Cheese" }],
-    meats: [{ type: Schema.Types.ObjectId, ref: "Meat" }],
-    addons: [{ type: Schema.Types.ObjectId, ref: "AddOns" }],
+    letter: {type: String}
+    cheese: [{ type: String, ref: "Cheese" }],
+    meats: [{ type: String, ref: "Meat" }],
+    addons: [{ type: String, ref: "AddOns" }],
+    specialRequest: {type: String}
     uid: {type: String, required: true},
     amount: {type: Number, required: true,},
     address: {type: Object, required: true,},

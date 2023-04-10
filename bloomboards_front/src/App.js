@@ -12,14 +12,12 @@ import Announcement from "./components/Announcement";
 
 function App() {
 const [user, setUser] = useState(null)
-console.log(user)
 const USER_URL = "http://localhost:4000/user/"
 
 useEffect(() => {
   const getToken = async () => {
     if (user) {
       const token = await user.getIdToken()
-      console.log(token)
     } else {
       //set orders to null
     }

@@ -43,11 +43,11 @@ useEffect(()=> {
             element={<Menu menu={menu} />}/>
             <Route path='/platterideas/:id'
             element={<MenuItem menu={menu} />}/>
-            <Route path='/orders/new'
+            <Route path='/createorder'
             element={<CreateOrder/>}/>
             <Route path='/numberboards'
             element={<Product/>}/>
-            <Route path='cart'
+            <Route path='/cart'
             element={<Cart/>}/>
             <Route path='/numberBoards'
             element={<NumberBoards/>}/>
