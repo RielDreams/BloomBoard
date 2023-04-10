@@ -116,12 +116,15 @@ const OrderSelect = styled.select`
 const OrderOption = styled.option`
 margin-left: .4rem;
 padding:.3rem;
-font-size:1rem;
+font-size:10rem;
 background-color: #ffffff;
 
 
 &:hover{
-  color: green
+  color: green;
+  background:#0c93e4;
+            box-shadow: 3px 0px #126CA1  inset;
+            transition:box-shadow .3s linear,text-indent
 }
 `
 

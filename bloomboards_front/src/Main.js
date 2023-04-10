@@ -11,6 +11,7 @@ import Product from "./Pages/NumberBoards";
 import Cart from "./Pages/Cart";
 import NumberBoards from "./Pages/NumberBoards";
 import Seasonal from "./Pages/Seasonal";
+import Contact from "./Pages/Contact"
 
 function Main({createUser, setUser}) {
 const [menu, setMenu] = useState(null)
@@ -53,6 +54,8 @@ useEffect(()=> {
             element={<NumberBoards/>}/>
             <Route path='/seasonal'
             element={<Seasonal/>}/>
+            <Route path='/Contact'
+            element={<Contact/>}/>
         </Routes>
     </main>
   )
