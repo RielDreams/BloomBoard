@@ -8,84 +8,75 @@ const CartRouter = express.Router
 const Cart = requried("../models/Cart")
 
 ////////////////////
-//MIDWARE
-////////////////////
-CartRouter.use(express.static("./public"));
-
-////////////////////
 //INDEX
 CartRouter.get("/", async (req, res) => {
-  const foundOrder = await Cart.find({})
-  res.render("Cart/index.ejs", {
-    currentUser: req.session.currentUser,
-    foundOrder,
-  });
+  try {
+    const foundCart = await Cart.find({})
+    res.status(200).json(foundCart)
+  } catch (error) {
+    res.status(500).json(error)
+  }
 })
 
 ////////////////////
 //NEW
 CartRouter.get("/new", async (req, res) => {
-  res.render("Cart/new.ejs", {
-    cheese,
-    meats,
-    addOns,
-    size,
-    currentUser: req.session.currentUser,
-  });
 });
 
 ////////////////////
 //DESTORY
 CartRouter.delete("/:id", (req, res) => {
-  Cart.findByIdAndRemove(req.params.id, () => {
-    res.redirect("/Cart");
-  });
+  try {
+    const Cart = await Cart.findByIdAndRemove(req.params.id);
+    res.status(200).json(Cart)
+  } catch (error) {
+    res.status(500).json(error)
+  }
 });
 
 ////////////////////
 //UPDATE
 CartRouter.put("/:id", (req, res) => {
-  Cart.findByIdAndUpdate(req.params.id, req.body, () => {
-    res.redirect("/Cart");
-  });
+try {
+  const updatedCart = await Cart.findByIdAndUpdate(req.params.id, req.body);
+  res.status(200).json(updatedCart)
+} catch (error) {
+  res.status(500).json(error)
+}
 });
 
 ////////////////////
 //CREATE
-CartRouter.post("/", (req, res) => {
-  Cart.create(req.body, (err, createdCart) => {
-    res.redirect("/Cart");
-  });
+CartRouter.post("/", async (req, res) => {
+  try {
+    const createdCart = await Cart.create(req.body);
+    res.status(200).json(createdCart)
+  } catch (error) {
+    res.status(500).json(error)
+  }
 });
 
 ////////////////////
 //EDIT
 CartRouter.get("/:id/edit", async (req, res) => {
-  const foundOrder = Cart.findById(req.params.id)
-      res.render("Cart/edit.ejs", {
-        cheese,
-        meats,
-        addOns,
-        size,
-        foundOrder,
-        currentUser: req.session.currentUser,
-      });
+  try {
+    const foundCart = Cart.findById(req.params.id)
+    res.status(200).json(foundCart)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+ 
     });
 
 ////////////////////
 //SHOW
-CartRouter.get("/:id", (req, res) => {
-  Cart.findById(req.params.id)
-    .populate("meats")
-    .populate("cheese")
-    .populate("size")
-    .populate("addons")
-    .exec((err, foundOrder) => {
-      res.render("Cart/show.ejs", {
-        foundOrder,
-        currentUser: req.session.currentUser,
-      });
-    });
-});
+CartRouter.get("/:uid", async (req, res) => {
+  try {
+    const foundCart = await Cart.find({id: req.params.uid})
+    res.status(200).json(foundCart)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+})
 
 module.exports = CartRouter;

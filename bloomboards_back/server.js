@@ -22,6 +22,8 @@ const userController = require("./controller/users");
 const ordersController = require("./controller/orders");
 const menuController = require("./controller/menu");
 const stripeController = require("./controller/Stripe");
+const cartController = require("./controller/Cart")
+const completedOrderController = require("./controller/CompletedOrder")
 
 ////////////////////
 //CONFIG
@@ -80,6 +82,8 @@ function isAuthenticated(req, res, next) {
 ////////////////////
 //CONTROLLER
 server.use("/orders", ordersController);
+server.use("/cart", cartController);
+server.use("/completedOrder", completedOrderController);
 server.use("/user", userController);
 server.use("/menu", menuController);
 server.use('/stripetoken', stripeController)

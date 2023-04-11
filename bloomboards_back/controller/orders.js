@@ -5,87 +5,82 @@ const ordersRouter = express.Router();
 //DATA
 ////////////////////
 const Orders = require("../models/order");
-const { meats, cheese, addOns, size } = require("../../bloomboards_front/src/menuitem");
 
 ////////////////////
 //MIDWARE
 ////////////////////
-ordersRouter.use(express.static("./public"));
+
 
 ////////////////////
 //INDEX
 ordersRouter.get("/", async (req, res) => {
-  const foundOrder = await Orders.find({})
-  res.render("orders/index.ejs", {
-    currentUser: req.session.currentUser,
-    foundOrder,
-  });
+  try {
+    const foundOrder = await Orders.find({})
+    res.status(200).json(foundOrder)
+  } catch (error) {
+    res.status(500).json(error)
+  }
 })
 
 ////////////////////
 //NEW
 ordersRouter.get("/new", async (req, res) => {
-  res.render("orders/new.ejs", {
-    cheese,
-    meats,
-    addOns,
-    size,
-    currentUser: req.session.currentUser,
-  });
 });
 
 ////////////////////
 //DESTORY
-ordersRouter.delete("/:id", (req, res) => {
-  Orders.findByIdAndRemove(req.params.id, () => {
-    res.redirect("/orders");
-  });
+ordersRouter.delete("/:id", async (req, res) => {
+  try {
+    const orders = await Orders.findByIdAndRemove(req.params.id);
+    res.status(200).json(orders)
+  } catch (error) {
+    res.status(500).json(error)
+  }
 });
 
 ////////////////////
 //UPDATE
-ordersRouter.put("/:id", (req, res) => {
-  Orders.findByIdAndUpdate(req.params.id, req.body, () => {
-    res.redirect("/orders");
-  });
+ordersRouter.put("/:id", async (req, res) => {
+try {
+  const updatedOrder = await Orders.findByIdAndUpdate(req.params.id, req.body);
+  res.status(200).json(updatedOrder)
+} catch (error) {
+  res.status(500).json(error)
+}
 });
 
 ////////////////////
 //CREATE
-ordersRouter.post("/", (req, res) => {
-  Orders.create(req.body, (err, createdOrders) => {
-    res.redirect("/orders");
-  });
+ordersRouter.post("/", async (req, res) => {
+  try {
+    const createdOrders = await Orders.create(req.body);
+    res.status(200).json(createdOrders)
+  } catch (error) {
+    res.status(500).json(error)
+  }
 });
 
 ////////////////////
 //EDIT
 ordersRouter.get("/:id/edit", async (req, res) => {
-  const foundOrder = Orders.findById(req.params.id)
-      res.render("orders/edit.ejs", {
-        cheese,
-        meats,
-        addOns,
-        size,
-        foundOrder,
-        currentUser: req.session.currentUser,
-      });
+  try {
+    const foundOrder = Orders.findById(req.params.id)
+    res.status(200).json(foundorder)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+ 
     });
 
 ////////////////////
 //SHOW
-ordersRouter.get("/:id", (req, res) => {
-  Orders.findById(req.params.id)
-    .populate("meats")
-    .populate("cheese")
-    .populate("size")
-    .populate("addons")
-    .exec((err, foundOrder) => {
-      res.render("orders/show.ejs", {
-        foundOrder,
-        currentUser: req.session.currentUser,
-      });
-    });
+ordersRouter.get("/:id", async (req, res) => {
+try {
+const foundOrders = await Orders.findById(req.params.id)
+res.status(200).json(foundOrders)
+} catch (error) {
+  res.status(500).json(error)
+}
 });
 
 module.exports = ordersRouter;

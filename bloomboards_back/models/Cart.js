@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const CartSchema = new Schema(
   {
-    uid: {String, required: true},
+    uid: {type: String, required: true},
     products: [
         {productID: {
             type: String
