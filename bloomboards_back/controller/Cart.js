@@ -1,11 +1,11 @@
 const express = require('express')
-const CartRouter = express.Router
+const CartRouter = express.Router()
 
 
 ////////////////////
 //DATA
 ////////////////////
-const Cart = requried("../models/Cart")
+const Cart = require("../models/Cart")
 
 ////////////////////
 //INDEX
@@ -25,10 +25,10 @@ CartRouter.get("/new", async (req, res) => {
 
 ////////////////////
 //DESTORY
-CartRouter.delete("/:id", (req, res) => {
+CartRouter.delete("/:id", async (req, res) => {
   try {
-    const Cart = await Cart.findByIdAndRemove(req.params.id);
-    res.status(200).json(Cart)
+    const deletedCart = await Cart.findByIdAndRemove(req.params.id);
+    res.status(200).json(deletedCart)
   } catch (error) {
     res.status(500).json(error)
   }
@@ -36,7 +36,7 @@ CartRouter.delete("/:id", (req, res) => {
 
 ////////////////////
 //UPDATE
-CartRouter.put("/:id", (req, res) => {
+CartRouter.put("/:id", async (req, res) => {
 try {
   const updatedCart = await Cart.findByIdAndUpdate(req.params.id, req.body);
   res.status(200).json(updatedCart)
@@ -60,7 +60,7 @@ CartRouter.post("/", async (req, res) => {
 //EDIT
 CartRouter.get("/:id/edit", async (req, res) => {
   try {
-    const foundCart = Cart.findById(req.params.id)
+    const foundCart = await Cart.findById(req.params.id)
     res.status(200).json(foundCart)
   } catch (error) {
     res.status(500).json(error)

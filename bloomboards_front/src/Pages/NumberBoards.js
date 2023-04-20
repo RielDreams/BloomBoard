@@ -1,12 +1,13 @@
-import React from 'react'
+import {React, useState} from 'react'
 import styled from 'styled-components'
 import { meats, cheese, addOns} from '../menuitem'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { mobile } from '../Responsive';
 
+
 const number = [1,2,3,4,5,6,7,8,9,0] 
-const size = [{Size: 8, price: 30},{size: 12, price: 35}, {size: 16, price:40} ]
+const size = [{size: 8, price: 30},{size: 12, price: 35}, {size: 16, price:40} ]
 
 const Container = styled.div`
     
@@ -111,6 +112,108 @@ const Price = styled.span`
 `
 
 const NumberBoards = () => {
+  const [quantity, setQuantity] = useState(1)
+  const [limit, setLimit] = useState(2)
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedCheeses, setSelectedCheeses] = useState(Array(limit).fill(null));
+  const [selectedMeats, setSelectedMeats] = useState(Array(limit).fill(null));
+  const [selectedAddOn, setSelectedAddOn] = useState('')
+  const [specialRequest, setSpecialRequest] =useState('')
+  const [price, setPrice ] = useState(0)
+  
+  const handleQuantity = (type) => {
+    if(type === "dec"){
+     quantity > 1 && setQuantity(quantity - 1)
+    } else {
+      setQuantity(quantity+1)
+    }
+  }
+
+    const handleSizeChange = async (e) => {
+      const newSize = e.target.value;
+      const newPrice = e.target.key
+      const currentCheeses = [...selectedCheeses];
+      const currentMeats = [...selectedMeats];
+    
+      if (newSize === "8") {
+        setLimit(2);
+        setSelectedCheeses(currentCheeses.slice(0, 2));
+        setSelectedMeats(currentMeats.slice(0, 2));
+        console.log(e.target.name)
+        setPrice("30")
+      } else if (newSize === "12" || newSize === "Medium") {
+        setLimit(3);
+        setSelectedCheeses(currentCheeses.slice(0, 3));
+        setSelectedMeats(currentMeats.slice(0, 3));
+        setPrice(35)
+      } else if (newSize === "16" || newSize === "X-Large") {
+        setLimit(4);
+        setSelectedCheeses(currentCheeses.slice(0, 4));
+        setSelectedMeats(currentMeats.slice(0, 4));
+        setPrice(40)
+      }
+    };
+
+
+  const handleCheeseChange = (e, index) => {
+    const newCheese = e.target.value;
+    const updatedCheeses = [...selectedCheeses];
+    updatedCheeses[index] = newCheese;
+    setSelectedCheeses(updatedCheeses);
+  };
+  
+  const handleMeatChange = (e, index) => {
+    const newMeats = e.target.value
+    const updatedMeats = [...selectedMeats]
+    updatedMeats[index] = newMeats
+    setSelectedMeats(updatedMeats);
+  };
+
+  const handleAddOnsChange = (e) => {
+    const newAddOn = e.target.value
+    setSelectedAddOn(newAddOn)
+  }
+
+
+ const handleSubmit = (e) => {
+      e.preventDefault();
+       // Reset cheese and meat selections to null arrays
+      setSelectedCheeses(Array(limit).fill(null));
+      setSelectedMeats(Array(limit).fill(null));
+ }
+
+
+
+ const renderCheeseSelects = () => {
+  const selects = []
+  for (let i = 0; i < limit ; i++) {
+    selects.push(
+      <OrderSelect key={i} onChange={(e) => handleCheeseChange(e, i)}>
+        <OrderOption disabled selected>Selection {i + 1}</OrderOption>
+        {cheese.map((cheese) => (
+          <OrderOption key={cheese.name}>{cheese.name}</OrderOption>
+        ))}
+      </OrderSelect>
+    );
+  }
+  return selects;
+};
+
+const renderMeatSelects = () => {
+  const selects = []
+  for (let i = 0; i < limit; i++) {
+    selects.push(
+      <OrderSelect key={i} onChange={(e) => handleMeatChange(e,i)}>
+        <OrderOption value="" disabled selected>Selection {i + 1}</OrderOption>
+        {meats.map(meat => (
+          <OrderOption value={meat.name} key={meat.name}>{meat.name}</OrderOption>
+        ))}
+      </OrderSelect>
+    );
+  }
+  return selects;
+};
+
 
   return (
     <Container>
@@ -124,9 +227,9 @@ const NumberBoards = () => {
             <OrderContainer>
               <OrderChoices>
                 <OrderTitle>size</OrderTitle>
-                <OrderSelect >
+                <OrderSelect onChange={handleSizeChange} >
                   {size.map(size => (
-                    <OrderOption >{size.size}</OrderOption>
+                    <OrderOption value={size.price} >{size.size}</OrderOption>
                     ))}
                   </OrderSelect>
               </OrderChoices>
@@ -140,41 +243,33 @@ const NumberBoards = () => {
               </OrderChoices>
               <OrderChoices>
                 <OrderTitle>Cheese</OrderTitle>
-                <OrderSelect>
-                  {cheese.map(cheese => (
-                    <OrderOption>{cheese.name}</OrderOption>
-                    ))}
-                </OrderSelect>
+                {renderCheeseSelects()}
               </OrderChoices>
               <OrderChoices>
                 <OrderTitle>meats</OrderTitle>
-                <OrderSelect>
-                  {meats.map(meats => (
-                    <OrderOption>{meats.name}</OrderOption>
-                    ))}
-                </OrderSelect>
+                {renderMeatSelects()}
               </OrderChoices>
               <OrderChoices>
                 <OrderTitle>addOns</OrderTitle>
-                <OrderSelect>
-                <OrderOption>NONE</OrderOption>
+                <OrderSelect onChange={handleAddOnsChange}>
+                  <OrderOption value="" disabled selected>NONE</OrderOption>
                   {addOns.map(addOns => (
-                    <OrderOption>{addOns.name}</OrderOption>
-                    ))}
+                    <OrderOption value={addOns.name} key={addOns.name}>{addOns.name}</OrderOption>
+                  ))}
                 </OrderSelect>
               </OrderChoices>
             </OrderContainer>
             <AddContainer>
               <AmountContainer>
-                <RemoveIcon/> 
-                <Amount>1</Amount>
-                <AddIcon/>
+                <RemoveIcon onClick={()=>handleQuantity("dec")}/> 
+                <Amount>{quantity}</Amount>
+                <AddIcon onClick={()=>handleQuantity("inc")}/>
                 </AmountContainer>
-                <Button>Add To Cart</Button>
+                <Button onclick={handleSubmit}>Add To Cart</Button>
               </AddContainer>            
           </InfoContainer>
           <Price>
-            0.00
+            {price}
           </Price>
         </Wrapper>
     </Container>

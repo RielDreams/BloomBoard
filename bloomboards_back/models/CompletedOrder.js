@@ -1,22 +1,26 @@
 const mongoose= require('mongoose')
 const Schema = mongoose.Schema;
 
-const CompletedOrder = new Schema(
+const CompletedOrderSchema = new Schema(
     {
-        uid: {type: String, required: true},
+        uid: { type: String, required: true },
         products: [
-            {productID: {
-                type: String
+          {
+            productId: {
+              type: String,
             },
-        quantity: {
-            type: Number,
-            default: 1,
-        },
-    }
+            quantity: {
+              type: Number,
+              default: 1,
+            },
+          },
         ],
-        amount: {type: number, required: true},
+        amount: { type: Number, required: true },
         address: {type: Object},
         paid: {type: Boolean}
       },
       { timestamps: true }
     );
+
+
+    module.exports = mongoose.model('CompletedOrder', CompletedOrderSchema)

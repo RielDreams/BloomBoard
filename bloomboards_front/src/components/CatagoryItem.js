@@ -56,13 +56,13 @@ const CatagoryItem = ({item}) => {
   const loaded = () => {
     return (
     <Container>
-        <Image src={item.img}/>
-        <Info>
-            <Title>{item.title}</Title>
-            <Link to={item.url}> 
+        <Link to={item.url}> 
+            <Image src={item.img}/>
+            <Info>
+                <Title>{item.title}</Title>
                 <Button>Check it out!</Button>
+            </Info>
             </Link>
-        </Info>
     </Container>
   )
 }

@@ -12,6 +12,7 @@ const orderSchema = new Schema(
     specialRequest: {type: String},
     uid: {type: String, required: true},
     price: {type: Number, required: true,},
+    inStock: {type: Boolean, default: true}
   },
   { timestamps: true }
 );

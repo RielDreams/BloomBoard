@@ -1,11 +1,11 @@
 const express = require('express')
-const completedOrderRouter = express.Router
+const completedOrderRouter = express.Router()
 
 
 ////////////////////
 //DATA
 ////////////////////
-const completedOrder = requried("../models/completedOrder")
+const completedOrder = require("../models/completedOrder")
 
 ////////////////////
 //INDEX
@@ -25,10 +25,10 @@ completedOrderRouter.get("/new", async (req, res) => {
 
 ////////////////////
 //DESTORY
-completedOrderRouter.delete("/:id", (req, res) => {
+completedOrderRouter.delete("/:id", async (req, res) => {
   try {
-    const completedOrder = await completedOrder.findByIdAndRemove(req.params.id);
-    res.status(200).json(completedOrder)
+    const deletedCompletedOrder = await completedOrder.findByIdAndRemove(req.params.id);
+    res.status(200).json(deletedCompletedOrder)
   } catch (error) {
     res.status(500).json(error)
   }
@@ -36,7 +36,7 @@ completedOrderRouter.delete("/:id", (req, res) => {
 
 ////////////////////
 //UPDATE
-completedOrderRouter.put("/:id", (req, res) => {
+completedOrderRouter.put("/:id", async (req, res) => {
 try {
   const updatedcompletedOrder = await completedOrder.findByIdAndUpdate(req.params.id, req.body);
   res.status(200).json(updatedcompletedOrder)
@@ -60,7 +60,7 @@ completedOrderRouter.post("/", async (req, res) => {
 //EDIT
 completedOrderRouter.get("/:id/edit", async (req, res) => {
   try {
-    const foundcompletedOrder = completedOrder.findById(req.params.id)
+    const foundcompletedOrder = await completedOrder.findById(req.params.id)
     res.status(200).json(foundcompletedOrder)
   } catch (error) {
     res.status(500).json(error)
@@ -79,31 +79,33 @@ completedOrderRouter.get("/:uid", async (req, res) => {
   }
 })
 
-completedOrderRouter.get('/income', async(req, res) => {
-const date = new Date()
-const lastMonth = new Date(date.setMonth(Date.getMonth()-1))
-const previousMonth = new Date(new date.setMonth(lastMonth.getMonth()-1))
+completedOrderRouter.get("/income", async (req, res) => {
+  const date = new Date();
+  const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
+  const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1));
 
-try {
+  try {
     const income = await completedOrder.aggregate([
-        {$match: {createdAt: { $gte: previousMonth}}},
-        {
-            $project:
-            month:{$month: '$createdAt'},
-            sales: "$amount"
-        }
-        {
-            $ground: {
-                _id: "$month",
-                total: {$sum: "$sales"}
-            }
-        }
-        res.status(200).json(income)
-    ])
-} catch (error) {
-    res.status(500).json(error)
-}
-})
+      { $match: { createdAt: { $gte: previousMonth } } },
+      {
+        $project: {
+          month: { $month: "$createdAt" },
+          sales: "$amount",
+        },
+      },
+      {
+        $group: {
+          _id: "$month",
+          total: { $sum: "$sales" },
+        },
+      },
+    ]);
+    res.status(200).json(income);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 
 module.exports = completedOrderRouter;

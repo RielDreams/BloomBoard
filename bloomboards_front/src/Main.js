@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import React from 'react'
 import Home from "./components/Home";
@@ -13,7 +13,7 @@ import NumberBoards from "./Pages/NumberBoards";
 import Seasonal from "./Pages/Seasonal";
 import Contact from "./Pages/Contact"
 
-function Main({createUser, setUser}) {
+function Main({user, setUser}) {
 const [menu, setMenu] = useState(null)
 const MENU_URL = "http://localhost:4000/menu"
 
@@ -36,10 +36,10 @@ useEffect(()=> {
             element={<Home menu={menu} />} />
             <Route 
             path='/registration'
-            element={<Registration createUser={createUser}/>}
+            element={user ? <Navigate to="/"/> : <Registration/>}
             />
             <Route path='/login'
-            element={<Login setUser={setUser}/>}/>
+            element={user ? <Navigate to="/"/> : <Login setUser={setUser}/>}/>
             <Route path='/platterideas'
             element={<Menu menu={menu} />}/>
             <Route path='/platterideas/:id'

@@ -7,11 +7,6 @@ const ordersRouter = express.Router();
 const Orders = require("../models/order");
 
 ////////////////////
-//MIDWARE
-////////////////////
-
-
-////////////////////
 //INDEX
 ordersRouter.get("/", async (req, res) => {
   try {

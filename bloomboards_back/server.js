@@ -22,8 +22,8 @@ const userController = require("./controller/users");
 const ordersController = require("./controller/orders");
 const menuController = require("./controller/menu");
 const stripeController = require("./controller/Stripe");
-const cartController = require("./controller/Cart")
-const completedOrderController = require("./controller/CompletedOrder")
+const cartController = require("./controller/Cart");
+const completedOrderController = require("./controller/CompletedOrder");
 
 ////////////////////
 //CONFIG
